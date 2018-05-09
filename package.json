@@ -6,12 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IfraA/Trigger-Tracker.git"
+  },
   "keywords": [
     "JavaScript",
+    "Node.js",
     "HTML",
-    "Mysql",
-    "Node"
+    "CSS",
+    "Mysql"
   ],
-  "author": "Tony Gonzalez",
-  "license": "ISC"
+  "author": "Tony, Ifra, Vanessa, Maureen.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IfraA/Trigger-Tracker/issues"
+  },
+  "homepage": "https://github.com/IfraA/Trigger-Tracker#readme"
 }
