@@ -12,15 +12,30 @@
 
 <body>
     <div>
+        <button class="js-geolocation"> Use Location</button>
         <button id="weather" type="button" data-toggle="collapse" data-target="#weatherDiv">
             test
+        </button>
     </div>
-    <div id="temp">
-        <h2>Temperature:</h2>
-    </div>
+    <!-- <img src="" alt="icon" id="icon"> -->
 
+    <div id="icon"></div>
+    <div id="temp">Temperature:</div>
+    <div id="location">location:</div>
     <script src="front.js"></script>
+
+
 
 </body>
 
 </html>
+
+
+
+
+<!-- // ---call pollen function, on click-------- $("#weather").click(function () { $("#weatherDiv").empty(); displayWeather();
+}); //global variable // get current location var city = sessionStorage.getItem("userInput"); // ------functions------- function
+displayWeather() { // $(document).ready(function (displayWeather) { // function displayWeather() { var queryURL = "http://api.wunderground.com/api/89a5b7c57e0c3e47/geolookup/conditions/forecast/q/CA/Sacramento.json";
+$.ajax({ url: queryURL, method: "GET", dataType: "jsonp", // success: function (parsed_json) { // var location = parsed_json['location']['city'];
+// var temp_f = parsed_json['current_observation']['temp_f']; // console.log("Current temperature in " + location + " is:
+" + temp_f); }).then(function (response) { console.log(response); $("#temp").text(response.forecast); }) }; // }); -->

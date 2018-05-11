@@ -2,8 +2,8 @@
   "name": "project2",
   "version": "1.0.0",
   "description": "Full Stack Development Project",
-  "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/IfraA/Trigger-Tracker/issues"
   },
-  "homepage": "https://github.com/IfraA/Trigger-Tracker#readme"
+  "homepage": "https://github.com/IfraA/Trigger-Tracker#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.37.7"
+  }
 }
