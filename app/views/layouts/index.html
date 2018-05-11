@@ -6,26 +6,29 @@
     <link rel="stylesheet" href="../../public/css/style.css" type="text/css" />
     <title>Trigger Tracker</title>
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="/assets/js/cats\\\.js"></script>
+    <script src="/assets/js/.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin="anonymous">
 
+
 </head>
 
-<body>
-    <div id="logo">
-        <img src="pulpitrock.jpg" alt="Mountain View" width="500" height="377">
-    </div>
+<body id="yellow">
 
-    {{!-- header --}}
+
+    <!-- header -->
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
             <a class="nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home">Weather</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
-                aria-selected="false">Allergen</a>
+            <a class="nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home">Allergen</a>
         </li>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home">Contact</a>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
                 aria-selected="false">Sign In</a>
@@ -37,13 +40,26 @@
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
     </div>
 
-    <div id="weather"></div>
-
-    <div id="graph"></div>
-
-    <div id="circles"></div>
+    <div id="weather" class="col-lg-12"> our weather info will go here.</div>
 
 
+    <div id="graph" class="col-lg-12">graph will go here</div>
+
+    <div id="circles" class="col-lg-12">circle graphs will go here</div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+    <!-- logo -->
+
+    <!-- <div id="logo">
+        <img src="pulpitrock.jpg" alt="Mountain View" width="500" height="377">
+    </div> -->
 </body>
 
 </html>
