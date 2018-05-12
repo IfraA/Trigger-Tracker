@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+//for graphs
+var ctx = document.getElementById("myChart").getContext('2d');
+var ctx2 = document.getElementById('pieChart').getContext('2d');
 
 // gelocation
 $(document).ready(function () {
@@ -46,17 +48,89 @@ $(document).ready(function () {
 
     }
 });
-=======
-< !DOCTYPE html >
-    <html lang="en">
 
-        <head>
-            <meta charset="UTF-8">
-                <title>Trigger Tracker</title>
-                <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/lumen/bootstrap.min.css" />
-                <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
-                    <script src="https://code.jquery.com/jquery.js"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</head>
->>>>>>> bfe07e0564d782600aa826a203fe4e6c643b28f7
+//graphs 
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [1, 2, 3, 4],
+        datasets: [{
+            label: 'Temperature',
+            data: [1, 2, 3, 2],
+            yAxisID: "y-axis-2",
+            borderColor: "#3498db",
+            fill: false,
+            type: "line"
+        }, {
+            label: 'Air Presure',
+            data: [2, 4, 5, 7],
+            backgroundColor: "#ffe879",
+            yAxisID: "y-axis-1",
+            type: 'bar'
+        }],
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                type: "linear",
+                display: true,
+                position: "left",
+                id: "y-axis-1",
+                gridLines: {
+                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                },
+                ticks: {
+                    beginAtZero: true
+                }
+
+            }, {
+                type: "linear",
+                display: true,
+                position: "right",
+                id: "y-axis-2",
+                gridLines: {
+                    drawOnChartArea: false, // only want the grid lines for one axis to show up
+                },
+                ticks: {
+                    beginAtZero: true
+                }
+
+            }]
+        }
+    }
+});
+
+var myPieChart = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        datasets: [{
+            backgroundColor: [
+                "#2ecc71",
+                "#3498db"
+            ],
+            data: [12, 10]
+        }]
+    }
+
+});
+
+function getTime() {
+    var d = new Date();
+    var currentHour = d.getHours();
+    console.log(currentHour);
+
+    for (var i = 0; i < 24; i++) {
+        var thisHour = currentHour + i;
+        if (thisHour > 24) {
+            hours.push(thisHour - 24);
+        }
+        if (thisHour > 12) {
+            console.log(thisHour + " is more than 12.");
+            console.log(thisHour - 12);
+            hours.push(thisHour - 12);
+        } else {
+            hours.push(thisHour);
+        }
+    }
+    console.log(hours);
+}
