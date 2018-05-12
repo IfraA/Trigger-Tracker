@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/IfraA/Trigger-Tracker/issues"
   },
-  "homepage": "https://github.com/IfraA/Trigger-Tracker#readme"
+  "homepage": "https://github.com/IfraA/Trigger-Tracker#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0"
+  }
 }
