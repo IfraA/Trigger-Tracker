@@ -4,10 +4,11 @@ var chartID = document.getElementById("myChart").getContext('2d');
 var hours = [];
 var color = "";
 var air = 0;
+var allergenValue = 0;
+var dataset = [];
 //replace with data from the api
-graphTriggers = [];
-circleTriggers = ["airQuality", "grass"];
-var allergenValue;
+var graphTriggers = ["airPresure", "temperature"];
+var circleTriggers = ["airQuality", "grass"];
 var tempArray = [89, 58, 67, 90, 83, 69, 62, 56, 52, 73, 81, 84, 75, 50, 77, 86, 78, 74, 57, 54, 51, 70, 79, 85];
 var presureArray = [41, 24, 12, 15, 29, 46, 19, 43, 10, 9, 21, 50, 33, 13, 7, 8, 32, 34, 26, 28, 11, 37, 22, 48];
 
@@ -37,9 +38,122 @@ function getTime() {
         }
     }
     console.log(hours);
+    getWeatherData();
 }
 
-getTime();
+function getWeatherData() {
+
+    for (k = 0; k < graphTriggers.length; k++) {
+        switch (graphTriggers[k]) {
+            case ("airPresure"):
+                dataset[k] = {
+                    label: 'Air Presure',
+                    data: [2, 4, 5, 7],
+                    backgroundColor: "#ffe879",
+                    yAxisID: 'y-axis-1',
+                    type: 'bar'
+                };
+                break;
+
+            case ("temperature"):
+                dataset[k] = {
+                    label: 'Temperature',
+                    data: [1, 2, 3, 2],
+                    yAxisID: 'y-axis-2',
+                    borderColor: '#3498db',
+                    fill: false,
+                    type: 'line'
+                };
+                break;
+
+            case ("wind"):
+                dataset[k] = {
+                    label: 'Wind Speed',
+                    data: [1, 2, 3, 2],
+                    yAxisID: "y-axis-2",
+                    borderColor: "#3498db",
+                    fill: false,
+                    type: "line"
+                };
+                break;
+
+            case ("rain"):
+                dataset[k] = {
+                    label: 'Rain',
+                    data: [2, 4, 5, 7],
+                    backgroundColor: "#ffe879",
+                    yAxisID: "y-axis-1",
+                    type: 'bar'
+                };
+                break;
+
+            case ("humidity"):
+                dataset[k] = {
+                    label: 'Humidity',
+                    data: [1, 2, 3, 2],
+                    yAxisID: "y-axis-2",
+                    borderColor: "#3498db",
+                    fill: false,
+                    type: "line"
+                };
+                break;
+
+        }
+        console.log(dataset);
+    }
+
+    var weatherChart = new Chart(chartID, {
+        type: 'bar',
+        data: {
+            labels: hours,
+            datasets:
+                // [{
+                //     label: 'Temperature',
+                //     data: [1, 2, 3, 2],
+                //     yAxisID: "y-axis-2",
+                //     borderColor: "#3498db",
+                //     fill: false,
+                //     type: "line"
+                // }, {
+                //     label: 'Air Presure',
+                //     data: [2, 4, 5, 7],
+                //     backgroundColor: "#ffe879",
+                //     yAxisID: "y-axis-1",
+                //     type: 'bar'
+                // }]
+                dataset,
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    type: "linear",
+                    display: true,
+                    position: "left",
+                    id: "y-axis-1",
+                    gridLines: {
+                        drawOnChartArea: false, // only want the grid lines for one axis to show up
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+
+                }, {
+                    type: "linear",
+                    display: true,
+                    position: "right",
+                    id: "y-axis-2",
+                    gridLines: {
+                        drawOnChartArea: false, // only want the grid lines for one axis to show up
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+
 
 //data for pie chart using catagory value system
 function pieDisplay() {
@@ -146,82 +260,5 @@ function addCircleData(index, chartId) {
     });
 }
 
-
-var weatherChart = new Chart(chartID, {
-    type: 'bar',
-    data: {
-        labels: hours,
-        datasets: [{
-            label: 'Temperature',
-            data: [1, 2, 3, 2],
-            yAxisID: "y-axis-2",
-            borderColor: "#3498db",
-            fill: false,
-            type: "line"
-        }, {
-            label: 'Air Presure',
-            data: [2, 4, 5, 7],
-            backgroundColor: "#ffe879",
-            yAxisID: "y-axis-1",
-            type: 'bar'
-        }],
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                type: "linear",
-                display: true,
-                position: "left",
-                id: "y-axis-1",
-                gridLines: {
-                    drawOnChartArea: false, // only want the grid lines for one axis to show up
-                },
-                ticks: {
-                    beginAtZero: true
-                }
-
-            }, {
-                type: "linear",
-                display: true,
-                position: "right",
-                id: "y-axis-2",
-                gridLines: {
-                    drawOnChartArea: false, // only want the grid lines for one axis to show up
-                },
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-
+getTime();
 createCircles();
-
-// var myPieChart = new Chart(ctx2, {
-//     type: 'doughnut',
-//     data: {
-//         datasets: [{
-//             backgroundColor: [
-//                 color,
-//                 "#3498db"
-//             ],
-//             data: [allergen, air]
-//         }]
-//     }
-
-// });
-
-// var myPieChart2 = new Chart(ctx3, {
-//     type: 'doughnut',
-//     data: {
-//         datasets: [{
-//             backgroundColor: [
-//                 "color",
-//                 "#3498db"
-//             ],
-//             data: [12, 10]
-//         }]
-//     }
-
-// });
