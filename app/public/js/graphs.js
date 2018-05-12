@@ -1,11 +1,17 @@
 // tell canvas what to do giving context 
-var ctx = document.getElementById("myChart").getContext('2d');
+var chartID = document.getElementById("myChart").getContext('2d');
 var ctx2 = document.getElementById('pieChart').getContext('2d');
 var ctx3 = document.getElementById('pieChart2').getContext('2d');
 var hours = [];
 var color = "";
-var allergen;
 var air = 0;
+//replace with data from the api
+graphTriggers = [];
+circleTriggers = [];
+var allergenValue = 5;
+var tempArray = [89, 58, 67, 90, 83, 69, 62, 56, 52, 73, 81, 84, 75, 50, 77, 86, 78, 74, 57, 54, 51, 70, 79, 85];
+var presureArray = [41, 24, 12, 15, 29, 46, 19, 43, 10, 9, 21, 50, 33, 13, 7, 8, 32, 34, 26, 28, 11, 37, 22, 48];
+
 
 //get the next 24 hours for labels
 function getTime() {
@@ -14,11 +20,17 @@ function getTime() {
     var currentHour = d.getHours();
     console.log(currentHour);
 
+    //for loop 24 times
     for (var i = 0; i < 24; i++) {
+        //millitary time hour
         var thisHour = currentHour + i;
+
+        //if past midnight, turn it into next day
         if (thisHour > 24) {
             thisHour -= 24;
         }
+
+        //if after noon turn it into us standard and add pm.  If not push it with am.
         if (thisHour > 12) {
             console.log(thisHour + " is more than 12.");
             console.log(thisHour - 12);
@@ -34,9 +46,10 @@ getTime();
 
 //data for pie chart using catagory value system
 function pieDisplay() {
-    //psudo for vars
-    air = 6 - allergen;
-    switch (allergen) {
+    //get value to create circle graph
+    air = 6 - allergenValue;
+    //change color based on value
+    switch (allergenValue) {
         case 1:
             color = "#00a86b";
             break;
@@ -53,13 +66,46 @@ function pieDisplay() {
             color = "#d76000";
             break;
         case 6:
-            color = "#d76000";
+            color = "#FF0000";
             break;
+    }
+    console.log(color);
+}
+
+pieDisplay();
+
+function createCircles() {
+    for (j = 0; j < circleTriggers.length; j++) {
+        var container = $("<div>");
+        var canvas = $("<canvas>");
+        var canvasID = '"circle' + i + '"';
+
+        container.addClass("circleContainer");
+        canvas.attr("id", canvasId);
+        canvas.attr("width", "400");
+        canvas.attr("height", "400");
+        container.append(canvas);
+
+        $("#circles").append(container);
+
+        addCircleData(j, canvasID);
     }
 }
 
+function addCircleData(index, chartId) {
+    switch (circleTriggers[index]) {
+        case airQuality:
+            allergen = airQuality;
+            allergenValue = ;
+            break;
 
-var myChart = new Chart(ctx, {
+        default:
+            break;
+    }
+};
+
+
+var weatherChart = new Chart(chartID, {
     type: 'bar',
     data: {
         labels: hours,
@@ -103,7 +149,6 @@ var myChart = new Chart(ctx, {
                 ticks: {
                     beginAtZero: true
                 }
-
             }]
         }
     }
@@ -128,7 +173,7 @@ var myPieChart2 = new Chart(ctx3, {
     data: {
         datasets: [{
             backgroundColor: [
-                "#2ecc71",
+                "color",
                 "#3498db"
             ],
             data: [12, 10]
