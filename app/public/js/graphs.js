@@ -1,3 +1,4 @@
+// tell canvas what to do giving context 
 var ctx = document.getElementById("myChart").getContext('2d');
 var ctx2 = document.getElementById('pieChart').getContext('2d');
 var ctx3 = document.getElementById('pieChart2').getContext('2d');

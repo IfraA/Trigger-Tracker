@@ -26,7 +26,10 @@
 
         <a class="nav-link nav-item" id="pills-contact-tab" data-toggle="pill" href="/sign-in" role="tab" aria-controls="pills-contact"
             aria-selected="false">Sign In</a>
-    </div> --}}
+    </div> --}} {{!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script> --}} {{!--
+    <script src="/js/graphs.js"></script> --}}
+
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
@@ -37,15 +40,18 @@
 
 
     <div id="graph" class="col-lg-12">
-        <canvas id="bar"></canvas>
+        <canvas id="myChart" width="400" height="400">
+
+        </canvas>
 
     </div>
 
     <div id="circles" class="col-lg-12">
-        <canvas id="circles"></canvas>
+        <canvas id="pieChart" width="400" height="400"></canvas>
+        <canvas id="pieChart2" width="400" height="400"></canvas>
     </div>
 
-
+    <script src="/js/graphs.js"></script>
 
     <!-- logo -->
 
