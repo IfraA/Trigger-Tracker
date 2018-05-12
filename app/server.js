@@ -17,7 +17,7 @@ var PORT = process.env.PORT || 3000;
 // Sets up the Express app to handle data parsing
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true })); 
 // parse application/json
 app.use(bodyParser.json());
 
@@ -35,10 +35,18 @@ app.set('view engine', 'handlebars');
 // require("./routes/api-routes.js")(app);
 app.use(require("./routes/html-routes.js"));
 
+
+app.get('/triggers', function (req, res) {
+  db.Triggers.findAll({}).then(function (triggers) {
+    console.log(triggers)
+  })
+})
+
 // Starts the server to begin listening
 // =============================================================
 
-db.sequelize.sync({ force: true }).then(function () {
+// Only uncomment Force True if you want to trash the DB
+db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     console.log("app listening on PORT " + PORT);
   });

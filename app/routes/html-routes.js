@@ -22,4 +22,10 @@ router.get("/contact", function (req, res) {
     res.render("contact");
 })
 
+// renders sign-up.handlebars
+router.get("/sign-up", function (req, res) {
+    //res.sendFile(path.join(__dirname, "../views/sign-in.html"));
+    res.render("sign-up");
+})
+
 module.exports = router;

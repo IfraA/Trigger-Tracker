@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/IfraA/Trigger-Tracker#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "body-parser": "^1.18.2",
     "method-override": "^2.3.10",
     "mysql2": "^1.5.3",
     "sequelize": "^4.37.7"
