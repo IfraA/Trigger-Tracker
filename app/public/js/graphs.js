@@ -10,7 +10,7 @@ function getTime() {
     var currentHour = d.getHours();
     console.log(currentHour);
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 24; i++) {
         var thisHour = currentHour + i;
         if (thisHour > 24) {
             hours.push(thisHour - 24);
