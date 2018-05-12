@@ -32,7 +32,27 @@ getTime();
 function pieDisplay() {
     //psudo for vars
     var allergen = '';
-    var air =
+    var air = 6 - allergen;
+    switch (allergen) {
+        case 1:
+            color = "#00a86b";
+            break;
+        case 2:
+            color = "#4fa134";
+            break;
+        case 3:
+            color = "#7d9500";
+            break;
+        case 4:
+            color = "#F7BD00";
+            break;
+        case 5:
+            color = "#d76000";
+            break;
+        case 6:
+            color = "#d76000";
+            break;
+    }
 }
 
 
