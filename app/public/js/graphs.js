@@ -2,6 +2,9 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var ctx2 = document.getElementById('pieChart').getContext('2d');
 var ctx3 = document.getElementById('pieChart2').getContext('2d');
 var hours = [];
+var color = "";
+var allergen;
+var air = 0;
 
 //get the next 24 hours for labels
 function getTime() {
@@ -13,7 +16,7 @@ function getTime() {
     for (var i = 0; i < 24; i++) {
         var thisHour = currentHour + i;
         if (thisHour > 24) {
-            hours.push(thisHour - 24);
+            thisHour -= 24;
         }
         if (thisHour > 12) {
             console.log(thisHour + " is more than 12.");
@@ -31,8 +34,7 @@ getTime();
 //data for pie chart using catagory value system
 function pieDisplay() {
     //psudo for vars
-    var allergen = '';
-    var air = 6 - allergen;
+    air = 6 - allergen;
     switch (allergen) {
         case 1:
             color = "#00a86b";
@@ -111,10 +113,10 @@ var myPieChart = new Chart(ctx2, {
     data: {
         datasets: [{
             backgroundColor: [
-                "#2ecc71",
+                color,
                 "#3498db"
             ],
-            data: [12, 10]
+            data: [allergen, air]
         }]
     }
 
