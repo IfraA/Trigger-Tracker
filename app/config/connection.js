@@ -1,7 +1,5 @@
 var Sequelize = require("sequelize");
-
-// Creates mySQL connection using Sequelize, the empty string in the third argument spot is our password.
-var sequelize = new Sequelize("triggerTracker", "root", "root", {
+var sequelize = new Sequelize("triggers", "root", "root", {
   host: "localhost",
   dialect: "mysql",
   pool: {
