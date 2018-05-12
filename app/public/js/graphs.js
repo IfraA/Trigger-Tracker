@@ -1,4 +1,4 @@
-// tell canvas what to do giving context 
+var Data = require("./front");
 var chartID = document.getElementById("myChart").getContext('2d');
 var ctx2 = document.getElementById('pieChart').getContext('2d');
 var ctx3 = document.getElementById('pieChart2').getContext('2d');
@@ -77,10 +77,12 @@ pieDisplay();
 function createCircles() {
     for (j = 0; j < circleTriggers.length; j++) {
         var container = $("<div>");
+        var containerID = '"container' + i + '"';
         var canvas = $("<canvas>");
         var canvasID = '"circle' + i + '"';
 
         container.addClass("circleContainer");
+
         canvas.attr("id", canvasId);
         canvas.attr("width", "400");
         canvas.attr("height", "400");
@@ -88,7 +90,20 @@ function createCircles() {
 
         $("#circles").append(container);
 
-        addCircleData(j, canvasID);
+        var ctx = document.getElementById(canvasID).getContext('2d');
+
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    backgroundColor: [
+                        color,
+                        "#3498db"
+                    ],
+                    data: [allergen, air]
+                }]
+            }
+        });
     }
 }
 
@@ -96,13 +111,33 @@ function addCircleData(index, chartId) {
     switch (circleTriggers[index]) {
         case airQuality:
             allergen = airQuality;
-            allergenValue = ;
+            allergenValue = Data;
+            break;
+        case grass:
+            allergen = grass;
+            allergenValue = Data;
+            break;
+        case mold:
+            allergen = mold;
+            allergenValue = Data;
+            break;
+        case tree:
+            allergen = tree;
+            allergenValue = Data;
+            break;
+        case ragweed:
+            allergen = ragweed;
+            allergenValue = Data;
+            break;
+        case uvIndex:
+            allergen = uvIndex;
+            allergenValue = Data;
             break;
 
         default:
             break;
     }
-};
+}
 
 
 var weatherChart = new Chart(chartID, {
