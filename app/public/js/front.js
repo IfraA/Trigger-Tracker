@@ -1,46 +1,97 @@
-// gelocation
+//global variable
+
+var locationKey = "";
+
+// prompt user to use current gelocation
 $(document).ready(function () {
-    if ("geolocation" in navigator) {
-        $('.js-geolocation').show();
-    } else {
-        $('.js-geolocation').hide();
-    }
+    // //get user's current location
+    // var cords = document.getElementById("location");
 
-    // button handler
-    $('.js-geolocation').on('click', function () {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            loadWeather(position.coords.latitude + ',' + position.coords.longitude);
-        });
+    // function getLocation() {
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.watchPosition(showPosition);
+    //     } else {
+    //         console.log("Geolocation is not supported by this browser.")
+    //     };
+    // };
+
+    // function useGeoLocation(position) {
+    //     console.log(position)
+    //     console.log(position.coords.latitude);
+    //     console.log(position.coords.longitude);
+
+    // var cords = loadWeather(position.coords.latitude + ',' + position.coords.longitude);
+    // //api call the cords to be used for geo location to get location key and run other functions
+    // var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + cords;
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "GET",
+    // }).then(function (response) {
+    //     console.log(response);
+    //     // ("#test").append(response);
+    //     locationKey = response.Key;
+    //     // console.log(locationKey);
+    //     dailyTemp();
+    // });
+    // }
+
+
+    $("#submit").on("click", function () {
+        getCityLocation();
+
     });
 
-    // ===call weather api===
-    $("#weather").click(function () {
-        $("#weatherDiv").empty();
-        displayWeather();
-    });
-
-    //global variable
-    // get current location
-    var city = sessionStorage.getItem("userInput");
-
-    // ------functions-------
-
-    function displayWeather() {
-        // $(document).ready(function (displayWeather) {
-        // function displayWeather() {
-        var queryURL = "http://api.wunderground.com/api/89a5b7c57e0c3e47/geolookup/conditions/forecast/q/CA/Sacramento.json";
-
+    //if user blocks use location key to let them add their location
+    function getCityLocation() {
+        // var city = ('#userInput').value;
+        // var locationKey = "";
+        // var city = document.getElementById('#userInput').value;
+        var city = $('#inputZip').val();
+        var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + city + "&language=en-us&details=true&alias=Always";
         $.ajax({
             url: queryURL,
             method: "GET",
         }).then(function (response) {
             console.log(response);
-            console.log(response.current_observation.icon_url);
-            $("#icon").append('<img src="' + response.current_observation.icon_url + '">');
-            $("#temp").append(response.current_observation.temp_f);
-            $("#location").append(response.location.city);
-
+            locationKey = response[0].Key;
+            console.log(locationKey);
+            dailyTemp();
+            // currentCondition();
         });
 
-    }
+    };
+
+
+
+    // function get dailyforecast for temperature
+    function dailyTemp() {
+        var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + locationKey + "?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&language=en-us&details=true&metric=false";
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            dataType: "jasonp",
+            cache: true, //for better response time
+        }).then(function (response) {
+            console.log(response);
+
+            $("#weather").append(response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit);
+            $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
+        });
+    };
+
 });
+
+    // function currentCondition() {
+    //     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + locationKey + "?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET",
+    //     }).then(function (response) {
+    //         console.log(response);
+    //         $("#temp").append(response[0].Temperature.Imperial.Value + " " + response[0].Temperature.Imperial.Unit + "<br>" + response[0].WeatherIcon)
+    //     })
+    // };
+
+
+
+

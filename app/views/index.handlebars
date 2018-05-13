@@ -9,8 +9,21 @@
         </li>
         <div class="nav-item" id="pills-home-tab">
             {{!--
-            <label for="inputZip">zip</label> --}}
-            <input type="text" class="form-control" id="inputZip" placeholder="Location">
+            <label for="inputZip">zip</label> --}} {{!-- //location btn --}} {{!--
+            <div>
+                <input type="text" class="form-control" id="inputZip" placeholder="Location">
+                <button id="submit" type="button" data-toggle="collapse" data-target="#weatherDiv">
+                    Submit
+                </button> --}}
+                <form id="custom-search-form" class="form-search form-horizontal pull-right">
+                    <div class="input-append span12">
+                        <input id="inputZip" type="text" class="search-query" placeholder="Search by city">
+                        <button type="button" class="btn" id="submit" data-toggle="collapse" data-target="#weatherDiv">
+                            <i class="fas fa-thumbtack"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
 
     </ul>
@@ -41,7 +54,9 @@
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
     </div>
 
-    <div id="weather" class="col-lg-12"> our weather info will go here.</div>
+    <div id="weather" class="col-lg-12"> Temperature:
+        <br>
+    </div>
 
 
     <div id="graph" class="col-lg-12">
