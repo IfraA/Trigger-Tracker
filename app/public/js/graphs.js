@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 var chartID = document.getElementById("myChart").getContext('2d');
 // var ctx2 = document.getElementById('pieChart').getContext('2d');
 // var ctx3 = document.getElementById('pieChart2').getContext('2d');
+=======
+// tell canvas what to do giving context 
+var ctx = document.getElementById("myChart").getContext('2d');
+>>>>>>> html2
 var hours = [];
 var color = "";
 var air = 0;
@@ -11,6 +16,7 @@ var graphTriggers = ["airPresure", "temperature"];
 var circleTriggers = ["airQuality", "grass"];
 var tempArray = [89, 58, 67, 90, 83, 69, 62, 56, 52, 73, 81, 84, 75, 50, 77, 86, 78, 74, 57, 54, 51, 70, 79, 85];
 var presureArray = [41, 24, 12, 15, 29, 46, 19, 43, 10, 9, 21, 50, 33, 13, 7, 8, 32, 34, 26, 28, 11, 37, 22, 48];
+
 
 
 //get the next 24 hours for labels
