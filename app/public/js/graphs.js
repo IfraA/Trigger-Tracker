@@ -1,3 +1,4 @@
+var Data = [];
 // tell canvas what to do giving context 
 var chartId = document.getElementById("myChart").getContext('2d');
 var hours = [];
@@ -8,9 +9,12 @@ var dataset = [];
 //replace with data from the api
 var graphTriggers = ["airPresure", "temperature"];
 var circleTriggers = ["airQuality", "grass"];
-var tempArray = [89, 58, 67, 90, 83, 69, 62, 56, 52, 73, 81, 84, 75, 50, 77, 86, 78, 74, 57, 54, 51, 70, 79, 85];
-var presureArray = [41, 24, 12, 15, 29, 46, 19, 43, 10, 9, 21, 50, 33, 13, 7, 8, 32, 34, 26, 28, 11, 37, 22, 48];
 
+for (i = 0; i < 24; i++) {
+    var number = Math.round(20 * Math.random());
+    Data.push(number);
+}
+console.log(Data);
 
 
 //get the next 24 hours for labels
@@ -48,7 +52,7 @@ function getWeatherData() {
             case ("airPresure"):
                 dataset[k] = {
                     label: 'Air Presure',
-                    data: [89, 58, 67, 90, 83, 69, 62, 56, 52, 73, 81, 84, 75, 50, 77, 86, 78, 74, 57, 54, 51, 70, 79, 85],
+                    data: Data,
                     backgroundColor: "#ffe879",
                     yAxisID: 'y-axis-1',
                     type: 'bar'
@@ -58,7 +62,7 @@ function getWeatherData() {
             case ("temperature"):
                 dataset[k] = {
                     label: 'Temperature',
-                    data: [89, 58, 67, 90, 83, 69, 62, 56, 52, 73, 81, 84, 75, 50, 77, 86, 78, 74, 57, 54, 51, 70, 79, 85],
+                    data: Data,
                     yAxisID: 'y-axis-2',
                     borderColor: '#3498db',
                     fill: false,
@@ -69,7 +73,7 @@ function getWeatherData() {
             case ("wind"):
                 dataset[k] = {
                     label: 'Wind Speed',
-                    data: [1, 2, 3, 2],
+                    data: Data,
                     yAxisID: "y-axis-2",
                     borderColor: "#3498db",
                     fill: false,
@@ -80,7 +84,7 @@ function getWeatherData() {
             case ("rain"):
                 dataset[k] = {
                     label: 'Rain',
-                    data: [2, 4, 5, 7],
+                    data: Data,
                     backgroundColor: "#ffe879",
                     yAxisID: "y-axis-1",
                     type: 'bar'
@@ -90,7 +94,7 @@ function getWeatherData() {
             case ("humidity"):
                 dataset[k] = {
                     label: 'Humidity',
-                    data: [1, 2, 3, 2],
+                    data: Data,
                     yAxisID: "y-axis-2",
                     borderColor: "#3498db",
                     fill: false,
@@ -256,6 +260,11 @@ function addCircleData(index, chartId) {
                 ],
                 data: [allergenValue, air]
             }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
         }
     });
 }

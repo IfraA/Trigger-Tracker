@@ -30,7 +30,6 @@
 
 #graph {
     width: 50%;
-    height: 200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -42,7 +41,7 @@
     margin-left: auto;
     margin-right: auto;
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    grid-gap: 4px;
+    grid-gap: 10px;
 }
 
 .circleContainer {
