@@ -1,25 +1,25 @@
-
 /* ----------------------------------------------------------------------- */
+
 /* sign-in.handlebars */
 
 #sign-inForm {
     width: 500px;
     height: 400px;
     position: relative;
-    margin-left:auto;
-    margin-right: auto; 
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 50px;
 }
 
 /* ----------------------------------------------------------------------- */
+
 /*  index.handlebars */
 
 .indexBody {
     background-color: black;
 }
 
-
-#weather{
+#weather {
     border: yellow solid 2px;
     height: 300px;
     width: 500px;
@@ -28,23 +28,27 @@
     margin-right: auto;
 }
 
-
-
 #graph {
     width: 50%;
     height: 200px;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 #circles {
+    display: grid;
     width: 33%;
     padding-top: 40px;
     margin-left: auto;
     margin-right: auto;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-gap: 4px;
 }
 
+.circleContainer {
+    display: block;
+    width: 100%;
+}
 
 .nav-link {
     color: white;
@@ -52,8 +56,8 @@
     padding: 30px 50px 30px 50px;
 }
 
-
 /* .navlink:hover{color:#FABC00;}; */
+
 /* 
 .form-control {
     margin-top: 35px;
@@ -69,21 +73,26 @@ button.btn {
 #inputLocation {
     text-align: center;
     font-size: 30px;
-    padding:  5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
 }
+
 /* ----------------------------------------------------------------------- */
+
 /* sign-up.handlebars */
+
 #sign-up {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     padding-top: 200px;
-
 }
+
 /* ----------------------------------------------------------------------- */
+
 /* logo.handlebars */
+
 .yellow {
-        background-color: #FABC00;
+    background-color: #FABC00;
 }
 
 #logo {
@@ -103,12 +112,16 @@ button.btn {
 }
 
 #logoImage:active {
-  background-color: #FABC00;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+    background-color: #FABC00;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 
 /* removes outline around image */
-#logoImage:focus {outline: none !important;};
 
+#logoImage:focus {
+    outline: none !important;
+}
+
+;
 /* ----------------------------------------------------------------------- */

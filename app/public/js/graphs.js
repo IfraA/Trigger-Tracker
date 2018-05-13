@@ -48,7 +48,7 @@ function getWeatherData() {
             case ("airPresure"):
                 dataset[k] = {
                     label: 'Air Presure',
-                    data: [2, 4, 5, 7],
+                    data: [89, 58, 67, 90, 83, 69, 62, 56, 52, 73, 81, 84, 75, 50, 77, 86, 78, 74, 57, 54, 51, 70, 79, 85],
                     backgroundColor: "#ffe879",
                     yAxisID: 'y-axis-1',
                     type: 'bar'
@@ -58,7 +58,7 @@ function getWeatherData() {
             case ("temperature"):
                 dataset[k] = {
                     label: 'Temperature',
-                    data: [1, 2, 3, 2],
+                    data: [89, 58, 67, 90, 83, 69, 62, 56, 52, 73, 81, 84, 75, 50, 77, 86, 78, 74, 57, 54, 51, 70, 79, 85],
                     yAxisID: 'y-axis-2',
                     borderColor: '#3498db',
                     fill: false,
@@ -102,7 +102,7 @@ function getWeatherData() {
         console.log(dataset);
     }
 
-    var weatherChart = new Chart(chartID, {
+    var weatherChart = new Chart(chartId, {
         type: 'bar',
         data: {
             labels: hours,
