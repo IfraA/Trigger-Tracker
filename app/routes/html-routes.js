@@ -4,8 +4,14 @@ var router = express.Router();
 
 var path = require('path');
 
-// renders index.handlebars
+// renders logo.handlebars
 router.get("/", function (req, res) {
+    //res.sendFile(path.join(__dirname, "../views/sign-in.html"));
+    res.render("logo");
+})
+
+// renders index.handlebars
+router.get("/index", function (req, res) {
     //res.sendFile(path.join(__dirname, "../views/sign-in.html"));
     res.render("index");
 })

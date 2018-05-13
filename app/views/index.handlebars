@@ -1,4 +1,4 @@
-<div>
+<div class="indexBody">
 
     <ul class="nav mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" id="pills-home-tab">
@@ -7,41 +7,26 @@
         <li class="nav-item" id="pills-home-tab">
             <a class="nav-link" href="/sign-in">Sign In</a>
         </li>
+        <li class="nav-item" id="pills-home-tab">
+            <a class="nav-link" href="/sign-up">Sign Up</a>
+        </li>
         <div class="nav-item" id="pills-home-tab">
             {{!--
             <label for="inputZip">zip</label> --}}
-            <input type="text" class="form-control" id="inputZip" placeholder="Location">
+            <input type="text" class="form-control" id="inputLocation" placeholder="Location">
         </div>
 
     </ul>
-    {{!--
-    <div class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <div class="nav-link nav-item" id="pills-home-tab" data-toggle="pill">
-            <a href="/contact">Contact</a>
-        </div>
-
-        <a href="/sign-in">Sign In</a>
-    </div> --}}
-
-    <!-- header -->
-    {{!--
-    <div class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-        <a class="nav-link nav-item" id="pills-home-tab" data-toggle="pill" href="/contact" role="tab" aria-controls="pills-home">Contact</a>
-
-        <a class="nav-link nav-item" id="pills-contact-tab" data-toggle="pill" href="/sign-in" role="tab" aria-controls="pills-contact"
-            aria-selected="false">Sign In</a>
-    </div> --}} {{!--
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script> --}} {{!--
-    <script src="/js/graphs.js"></script> --}}
 
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"></div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"></div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"></div>
     </div>
 
-    <div id="weather" class="col-lg-12"> our weather info will go here.</div>
+    <div id="weather" class="col-lg-12">
+        <p>our weather info will go here.</p>
+    </div>
 
 
     <div id="graph" class="col-lg-12">
@@ -58,9 +43,4 @@
 
     <script src="/js/graphs.js"></script>
 
-    <!-- logo -->
-
-    <!-- <div id="logo">
-        <img src="pulpitrock.jpg" alt="Mountain View" width="500" height="377">
-    </div> -->
 </div>
