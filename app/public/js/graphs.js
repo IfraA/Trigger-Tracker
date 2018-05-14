@@ -6,9 +6,10 @@ var color = "";
 var air = 0;
 var allergenValue = 0;
 var dataset = [];
-//replace with data from the api
-var graphTriggers = ["airPresure", "temperature"];
-var circleTriggers = ["airQuality", "grass"];
+
+//**replace with data from the api**
+var graphTriggers = ["airPresure", "temperature", "wind"];
+var circleTriggers = ["airQuality", "grass", "UVIndex", "ragweed", "mold"];
 
 for (i = 0; i < 24; i++) {
     var number = Math.round(20 * Math.random());
@@ -16,6 +17,7 @@ for (i = 0; i < 24; i++) {
 }
 console.log(Data);
 
+//main graph functions
 
 //get the next 24 hours for labels
 function getTime() {
@@ -158,32 +160,7 @@ function getWeatherData() {
     });
 }
 
-
-//data for pie chart using catagory value system
-function pieDisplay() {
-    //change color based on value
-    switch (allergenValue) {
-        case 1:
-            color = "#00a86b";
-            break;
-        case 2:
-            color = "#4fa134";
-            break;
-        case 3:
-            color = "#7d9500";
-            break;
-        case 4:
-            color = "#F7BD00";
-            break;
-        case 5:
-            color = "#d76000";
-            break;
-        case 6:
-            color = "#FF0000";
-            break;
-    }
-    console.log(color);
-}
+//pie chart functions
 
 function createCircles() {
     for (j = 0; j < circleTriggers.length; j++) {
@@ -267,6 +244,31 @@ function addCircleData(index, chartId) {
             }
         }
     });
+}
+
+function pieDisplay() {
+    //change color based on value
+    switch (allergenValue) {
+        case 1:
+            color = "#00a86b";
+            break;
+        case 2:
+            color = "#4fa134";
+            break;
+        case 3:
+            color = "#7d9500";
+            break;
+        case 4:
+            color = "#F7BD00";
+            break;
+        case 5:
+            color = "#d76000";
+            break;
+        case 6:
+            color = "#FF0000";
+            break;
+    }
+    console.log(color);
 }
 
 getTime();

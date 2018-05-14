@@ -2,6 +2,12 @@
 
 var locationKey = "";
 
+//timeout to index page, then run script
+setTimeout(function () {
+    return res.redirect('/index');
+}, 3000);
+
+
 // prompt user to use current gelocation
 $(document).ready(function () {
     // //get user's current location
@@ -81,17 +87,13 @@ $(document).ready(function () {
 
 });
 
-    // function currentCondition() {
-    //     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + locationKey + "?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET",
-    //     }).then(function (response) {
-    //         console.log(response);
-    //         $("#temp").append(response[0].Temperature.Imperial.Value + " " + response[0].Temperature.Imperial.Unit + "<br>" + response[0].WeatherIcon)
-    //     })
-    // };
-
-
-
-
+// function currentCondition() {
+//     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + locationKey + "?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET",
+//     }).then(function (response) {
+//         console.log(response);
+//         $("#temp").append(response[0].Temperature.Imperial.Value + " " + response[0].Temperature.Imperial.Unit + "<br>" + response[0].WeatherIcon)
+//     })
+// };
