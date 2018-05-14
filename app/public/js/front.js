@@ -4,42 +4,94 @@ var locationKey = "";
 
 // prompt user to use current gelocation
 $(document).ready(function () {
-    if ("geolocation" in navigator) {
 
-        navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
-            console.log(result);
+    if ("geolocation" in navigator) {
+        navigator.permissions.query({
+            name: 'geolocation'
+        }).then(function (result) {
+
             if (result.state === 'granted') {
-                console.log("Latitude: " + result.coords.latitude +
-                    "Longitude: " + result.coords.longitude);
-                getCordsLocation(result.coords.latitude + "," + result.coords.longitude);
-            } else if (result.state === 'prompt') {
-                // check if geolocation is supported/enabled on current browser
                 navigator.geolocation.getCurrentPosition(
                     function success(position) {
                         // for when getting location is a success
-                        console.log("Latitude: " + position.coords.latitude +
-                            "Longitude: " + position.coords.longitude);
+                        console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
                         getCordsLocation(position.coords.latitude + "," + position.coords.longitude);
-
+                        setTimeout(function () {
+                            window.location.href = "/index";
+                        }, 3000);
                     },
                     function error(error_message) {
                         // for when getting location results in an error
                         console.error('An error has occured while retrieving location', error_message);
-                        // setTimeout(function () {
-                        //     window.location.href = "/index";
-                        // }, 3000);
+                        setTimeout(function () {
+                            window.location.href = "/index";
+                        }, 3000);
                     }
-                )
+                );
+            } else if (result.state === 'prompt') {
+                navigator.geolocation.getCurrentPosition(
+                    function success(position) {
+                        // for when getting location is a success
+                        console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
+                        getCordsLocation(position.coords.latitude + "," + position.coords.longitude);
+                        setTimeout(function () {
+                            window.location.href = "/index";
+                        }, 3000);
+                    },
+                    function error(error_message) {
+                        // for when getting location results in an error
+                        console.error('An error has occured while retrieving location', error_message);
+                        setTimeout(function () {
+                            window.location.href = "/index";
+                        }, 3000);
+                    }
+                );
             }
+
         });
+
     } else {
         // geolocation is not supported
         // get your location some other way
         console.log('geolocation is not enabled on this browser');
-        //     setTimeout(function () {
-        //         window.location.href = "/index";
-        //     }, 3000);
     }
+
+
+    // if ("geolocation" in navigator) {
+
+    //     navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
+    //         console.log(result);
+    //         if (result.state === 'granted') {
+    //             console.log("Latitude: " + result.coords.latitude +
+    //                 "Longitude: " + result.coords.longitude);
+    //             getCordsLocation(result.coords.latitude + "," + result.coords.longitude);
+    //         } else if (result.state === 'prompt') {
+    //             // check if geolocation is supported/enabled on current browser
+    //             navigator.geolocation.getCurrentPosition(
+    //                 function success(position) {
+    //                     // for when getting location is a success
+    // console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
+    // getCordsLocation(position.coords.latitude + "," + position.coords.longitude);
+
+    //                 },
+    //                 function error(error_message) {
+    //                     // for when getting location results in an error
+    //                     console.error('An error has occured while retrieving location', error_message);
+    // setTimeout(function () {
+    //     window.location.href = "/index";
+    // }, 3000);
+    //                 }
+    //             )
+    //         }
+    //     });
+    // } else {
+    //     // geolocation is not supported
+    //     // get your location some other way
+    //     console.log('geolocation is not enabled on this browser');
+    //     //     setTimeout(function () {
+    //     //         window.location.href = "/index";
+    //     //     }, 3000);
+    // }
 
 
     //function that uses cords to generate location key api
@@ -88,7 +140,7 @@ $(document).ready(function () {
             // currentCondition();
         });
 
-    };
+    }
 
 
 
@@ -106,12 +158,6 @@ $(document).ready(function () {
             $("#weather").append(response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit);
             $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
-    };
+    }
 
 });
-
-
-
-
-
-
