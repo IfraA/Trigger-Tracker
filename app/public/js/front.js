@@ -4,42 +4,71 @@ var locationKey = "";
 
 // prompt user to use current gelocation
 $(document).ready(function () {
-    // //get user's current location
-    // var cords = document.getElementById("location");
+    if ("geolocation" in navigator) {
 
-    // function getLocation() {
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.watchPosition(showPosition);
-    //     } else {
-    //         console.log("Geolocation is not supported by this browser.")
-    //     };
-    // };
+        navigator.permissions.query({ name: 'geolocation' }).then(function (result) {
+            console.log(result);
+            if (result.state === 'granted') {
+                console.log("Latitude: " + result.coords.latitude +
+                    "Longitude: " + result.coords.longitude);
+                getCordsLocation(result.coords.latitude + "," + result.coords.longitude);
+            } else if (result.state === 'prompt') {
+                // check if geolocation is supported/enabled on current browser
+                navigator.geolocation.getCurrentPosition(
+                    function success(position) {
+                        // for when getting location is a success
+                        console.log("Latitude: " + position.coords.latitude +
+                            "Longitude: " + position.coords.longitude);
+                        getCordsLocation(position.coords.latitude + "," + position.coords.longitude);
 
-    // function useGeoLocation(position) {
-    //     console.log(position)
-    //     console.log(position.coords.latitude);
-    //     console.log(position.coords.longitude);
+                    },
+                    function error(error_message) {
+                        // for when getting location results in an error
+                        console.error('An error has occured while retrieving location', error_message);
+                        // setTimeout(function () {
+                        //     window.location.href = "/index";
+                        // }, 3000);
+                    }
+                )
+            }
+        });
+    } else {
+        // geolocation is not supported
+        // get your location some other way
+        console.log('geolocation is not enabled on this browser');
+        //     setTimeout(function () {
+        //         window.location.href = "/index";
+        //     }, 3000);
+    }
 
-    // var cords = loadWeather(position.coords.latitude + ',' + position.coords.longitude);
-    // //api call the cords to be used for geo location to get location key and run other functions
-    // var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + cords;
-    // $.ajax({
-    //     url: queryURL,
-    //     method: "GET",
-    // }).then(function (response) {
-    //     console.log(response);
-    //     // ("#test").append(response);
-    //     locationKey = response.Key;
-    //     // console.log(locationKey);
-    //     dailyTemp();
+
+    //function that uses cords to generate location key api
+    function getCordsLocation(currentCords) {
+        // var currentLat = position.coords.latitude;
+        // var currentLong = position.coords.longitude;
+        var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + currentCords + "&language=en-us&details=true";
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+        }).then(function (response) {
+            console.log(response);
+            locationKey = response.Key;
+            console.log(locationKey);
+            //load the next page
+            dailyTemp();
+            setTimeout(function () {
+                window.location.href = "/index";
+            }, 3000);
+
+        });
+
+    }
+
+
+    // $("#submit").on("click", function () {
+    //     getCityLocation();
+
     // });
-    // }
-
-
-    $("#submit").on("click", function () {
-        getCityLocation();
-
-    });
 
     //if user blocks use location key to let them add their location
     function getCityLocation() {
@@ -81,16 +110,7 @@ $(document).ready(function () {
 
 });
 
-    // function currentCondition() {
-    //     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + locationKey + "?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET",
-    //     }).then(function (response) {
-    //         console.log(response);
-    //         $("#temp").append(response[0].Temperature.Imperial.Value + " " + response[0].Temperature.Imperial.Unit + "<br>" + response[0].WeatherIcon)
-    //     })
-    // };
+
 
 
 
