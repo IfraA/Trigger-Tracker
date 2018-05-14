@@ -104,6 +104,7 @@ $(document).ready(function () {
             console.log(response);
 
             $("#weather").append(response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit);
+            $("#weather").append(response.DailyForecasts[0].Day[0].IconPhrase);
             $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
     };
