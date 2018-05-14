@@ -2,12 +2,6 @@
 
 var locationKey = "";
 
-//timeout to index page, then run script
-setTimeout(function () {
-    return res.redirect('/index');
-}, 3000);
-
-
 // prompt user to use current gelocation
 $(document).ready(function () {
 
@@ -122,23 +116,6 @@ $(document).ready(function () {
             }
             $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
-<<<<<<< HEAD
-    };
-
-});
-
-// function currentCondition() {
-//     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + locationKey + "?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET",
-//     }).then(function (response) {
-//         console.log(response);
-//         $("#temp").append(response[0].Temperature.Imperial.Value + " " + response[0].Temperature.Imperial.Unit + "<br>" + response[0].WeatherIcon)
-//     })
-// };
-=======
     }
 
 });
->>>>>>> 0f7841798b986c1715399aa309df20348e4c9447
