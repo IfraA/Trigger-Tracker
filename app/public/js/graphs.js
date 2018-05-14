@@ -17,7 +17,19 @@ for (i = 0; i < 24; i++) {
 }
 console.log(Data);
 
+<<<<<<< HEAD
 //main graph functions
+=======
+function hourlyForcast() {
+    var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD&q=" + city + "&language=en-us&details=true&alias=Always";
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+    }).then(function (response) {
+
+    });
+}
+>>>>>>> 0f7841798b986c1715399aa309df20348e4c9447
 
 //get the next 24 hours for labels
 function getTime() {

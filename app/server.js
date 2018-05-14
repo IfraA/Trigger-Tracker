@@ -7,6 +7,8 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var db = require("./models/index.js");
+var requirejs = require('requirejs');
+
 
 
 // Sets up the Express App
@@ -17,7 +19,9 @@ var PORT = process.env.PORT || 3000;
 // Sets up the Express app to handle data parsing
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 // parse application/json
 app.use(bodyParser.json());
 
@@ -27,7 +31,9 @@ app.use(express.static("public"));
 // setting up to use handlebars
 var exphbs = require('express-handlebars');
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
 // Routes
@@ -38,9 +44,9 @@ app.use(require("./routes/html-routes.js"));
 
 app.get('/triggers', function (req, res) {
   db.Triggers.findAll({}).then(function (triggers) {
-    console.log(triggers)
-  })
-})
+    console.log(triggers);
+  });
+});
 
 // Starts the server to begin listening
 // =============================================================
