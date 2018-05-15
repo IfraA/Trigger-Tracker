@@ -37,6 +37,7 @@ $(document).ready(function () {
                         setTimeout(function () {
                             window.location.href = "/index";
                         }, 1250);
+
                     },
                     function error(error_message) {
                         // for when getting location results in an error
@@ -44,6 +45,7 @@ $(document).ready(function () {
                         setTimeout(function () {
                             window.location.href = "/index";
                         }, 1250);
+
                     }
                 );
             }
@@ -54,6 +56,9 @@ $(document).ready(function () {
         // geolocation is not supported
         // get your location some other way
         console.log('geolocation is not enabled on this browser');
+        alert("Please enter your location");
+        //load the default data
+        defaultPage();
     }
 
 
@@ -77,6 +82,27 @@ $(document).ready(function () {
         });
 
     }
+
+    //default results for sacramento upon loading of index page
+    function defaultPage() {
+        var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/347627?apikey=CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD&language=en-us&details=true&metric=true";
+        $.ajax({
+            url: queryURL,
+            method: "GET",
+            dataType: "jasonp",
+            cache: true, //for better response time
+        }).then(function (response) {
+            console.log(response);
+
+            $("#weather").append(response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit);
+            $("#weather").append(response.DailyForecasts[0].Day[0].IconPhrase);
+            var iconName = response.DailyForecasts[0].Day[0].IconPhrase;
+            if (iconName === "Sunny") {
+                ("#weather").append('<img src="/assets/sunny.png>');
+            }
+            $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
+        });
+    };
 
     //if user blocks use location key to let them add their location
     function getCityLocation() {
