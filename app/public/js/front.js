@@ -77,17 +77,8 @@ window.onload = (function () {
             defaultPage();
         }
     } else {
-<<<<<<< HEAD
-        // geolocation is not supported
-        // get your location some other way
-        console.log('geolocation is not enabled on this browser');
-        alert("Please enter your location");
-        //load the default data
-        // defaultPage();
-=======
         getCordsLocation();
         defaultPage();
->>>>>>> 392612d3c6c8e66e99e81097a853666b7b9c334c
     }
 
 
