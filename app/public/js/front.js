@@ -58,7 +58,7 @@ $(document).ready(function () {
         console.log('geolocation is not enabled on this browser');
         alert("Please enter your location");
         //load the default data
-        defaultPage();
+        // defaultPage();
     }
 
 
@@ -103,7 +103,9 @@ $(document).ready(function () {
             $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
     };
-
+    $("#test").on('click', function () {
+        getCityLocation();
+    });
     //if user blocks use location key to let them add their location
     function getCityLocation() {
         // var city = ('#userInput').value;
@@ -130,18 +132,18 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET",
-            dataType: "jasonp",
-            cache: true, //for better response time
+            // dataType: "jasonp",
+            // cache: true, //for better response time
         }).then(function (response) {
             console.log(response);
 
             $("#weather").append(response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit);
-            $("#weather").append(response.DailyForecasts[0].Day[0].IconPhrase);
+            $("#weather").append(response.DailyForecasts[0].Day.IconPhrase);
             var iconName = response.DailyForecasts[0].Day[0].IconPhrase;
             if (iconName === "Sunny") {
-                ("#weather").append('<img src="/assets/sunny.png>');
-            }
-            $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
+                ("#imgDiv").append('<img src="/assets/sunny.png">');
+            } else { console.log(empty) };
+            $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
     }
 
