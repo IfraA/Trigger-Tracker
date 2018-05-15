@@ -1,46 +1,60 @@
 <body class="indexBody">
 
-    <ul class="nav mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item" id="pills-home-tab">
-            <a class="nav-link" href="/contact">Contact</a>
-        </li>
-        <li class="nav-item" id="pills-home-tab">
-            <a class="nav-link" href="/sign-in">Sign In</a>
-        </li>
-        <li class="nav-item" id="pills-home-tab">
-            <a class="nav-link" href="/sign-up">Sign Up</a>
-        </li>
-        <div class="nav-item" id="pills-home-tab">
-            {{!--
-            <label for="inputZip">zip</label> --}} {{!-- //location btn --}} {{!--
-            <div>
-                <input type="text" class="form-control" id="inputZip" placeholder="Location">
-                <button id="submit" type="button" data-toggle="collapse" data-target="#weatherDiv">
-                    Submit
-                </button> --}}
-                <form id="custom-search-form" class="form-search form-horizontal pull-right">
-                    <div class="input-append span12">
-                        <input id="inputZip" type="text" class="search-query" placeholder="Search by city">
-                        <button type="button" class="btn" id="submit" data-toggle="collapse" data-target="#weatherDiv">
-                            <i class="fas fa-thumbtack"></i>
-                        </button>
-                    </div>
+    {{!-- -------------Navbar----------------- --}}
+    <div id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">
+                <img src="assets/logo-ylw-06.png" id="logo-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#logo2" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="logo2"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/sign-in">Sign In
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sign-up">Sign Up</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Triggers
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Air Quality</a>
+                            <a class="dropdown-item" href="#">Air Pressure</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Pollen</a>
+                        </div>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="searchCity" placeholder="Enter city" aria-label="City" id="city">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                        <i class="fas fa-thumbtack" id="thumbtack"></i>
+                    </button>
                 </form>
             </div>
-
-
-    </ul>
-
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"></div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"></div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"></div>
+        </nav>
     </div>
 
-    <div id="weather" class="col-lg-12"> Temperature:
-        <br>
-    </div>
+    {{!-- -----------body--------- --}}
 
+    <div id="weather" class="col-lg-12">
+        <div id="temperature"> Temperature:
+            <br>
+        </div>
+        <div id="icon"></div>
+        <br> {{!-- //display city name --}}
+        <div id="cityName"></div>
+    </div>
 
     <div id="graph" class="col-lg-12">
         <div id="container">

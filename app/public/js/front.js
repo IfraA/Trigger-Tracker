@@ -91,7 +91,7 @@ window.onload = (function () {
     }
 
 
-    //function that uses cords to generate location key api
+    //function that uses current location cords to generate location key api
     function getCordsLocation(currentCords) {
         // var currentLat = position.coords.latitude;
         // var currentLong = position.coords.longitude;
@@ -103,7 +103,7 @@ window.onload = (function () {
             console.log(response);
             locationKey = response.Key;
             console.log(locationKey);
-            //load the next page
+            //load the next page to display data with the current location cords
             dailyTemp();
         });
 
@@ -111,6 +111,8 @@ window.onload = (function () {
 
     //default results for sacramento upon loading of index page
     function defaultPage() {
+        var city = "Sacramento";
+        dafaultLocationKey = 347627;
         var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/347627?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&language=en-us&details=true&metric=true";
         $.ajax({
             url: queryURL,
@@ -120,13 +122,14 @@ window.onload = (function () {
         }).then(function (response) {
             console.log(response);
 
-            $("#weather").append(response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit);
-            $("#weather").append(response.DailyForecasts[0].Day[0].IconPhrase);
-            var iconName = response.DailyForecasts[0].Day[0].IconPhrase;
+            $("#temperature").html("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
+            $("#temperature").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
+            var iconName = response.DailyForecasts[0].Day.IconPhrase;
             if (iconName === "Sunny") {
-                ("#weather").append('<img src="/assets/sunny.png>');
+                ("#icon").append('<img src="/assets/sunny.png">');
             }
-            $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
+            $("#cityName").append(Sacramento);
+            // $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
     }
 
@@ -135,7 +138,7 @@ window.onload = (function () {
         // var city = ('#userInput').value;
         // var locationKey = "";
         // var city = document.getElementById('#userInput').value;
-        var city = $('#inputZip').val();
+        var city = $('#city').val();
         var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + city + "&language=en-us&details=true&alias=Always";
         $.ajax({
             url: queryURL,
@@ -152,6 +155,7 @@ window.onload = (function () {
 
     // function get dailyforecast for temperature
     function dailyTemp() {
+        var city = $('#city').val();
         var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + locationKey + "?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&language=en-us&details=true&metric=false";
         $.ajax({
             url: queryURL,
@@ -159,14 +163,16 @@ window.onload = (function () {
         }).then(function (response) {
             console.log("response: " + response.DailyForecasts[0].Day.Icon);
 
-            $("#weather").html("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
-            $("#weather").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
+            $("#temperature").append("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
+            $("#temperature").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
             var iconName = response.DailyForecasts[0].Day.IconPhrase;
             if (iconName === "Sunny") {
-                ("#imgDiv").append('<img src="/assets/sunny.png">');
+                ("#imgDiv").append('<img src="/assets/sunny-y.png">');
             } else {
                 console.log(empty)
             };
+            //display city name
+            $("#cityName").append(city);
             $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
     }

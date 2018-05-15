@@ -14,24 +14,74 @@
 /* ----------------------------------------------------------------------- */
 
 /*  index.handlebars */
+.navbar{
+    color:white !important;
+    background: black;
+    font-size: 15px;
+      
+}
+.bg-light{
+    background-color: black !important;
+    border-color: black !important;
+
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 20px;
+    margin: 10px;
+    margin-left: 30px;
+    
+    /* background:yellow; */
+    
+}
+.nav-link:hover {
+    color:#FABC00  !important;
+}
+
+
+#logo-2{
+width: 60px;
+height: 70px;
+background-color: black;
+margin-right: 30px;
+}
+
+.btn-outline-success{
+    border-color: #FABC00 !important;
+}
+
+.form-inline{
+    margin-right: 150px;
+}
+
 
 .indexBody {
     background-color: black;
 }
 
 #weather {
-    border: yellow solid 2px;
+    border: white solid 1px;
+    /* background-color: white; */
     min-height: 300px;
     width: 80%;
     position: relative;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-style: bold;
+    color: #FABC00;
+    font-size: 30px;
 }
 
 #graph {
+    margin-top: 30px;
     width: 80%;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+    padding: 30px;
 }
 
 #circles {
@@ -49,13 +99,7 @@
     width: 100%;
 }
 
-.nav-link {
-    color: white;
-    font-size: 30px;
-    padding: 30px 50px 30px 50px;
-}
 
-/* .navlink:hover{color:#FABC00;}; */
 
 /* 
 .form-control {
