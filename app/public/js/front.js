@@ -147,14 +147,12 @@ window.onload = (function () {
         $.ajax({
             url: queryURL,
             method: "GET",
-            // dataType: "jasonp",
-            // cache: true, //for better response time
         }).then(function (response) {
-            console.log(response);
+            console.log("response: " + response.DailyForecasts[0].Day.Icon);
 
-            $("#weather").append(response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit);
-            $("#weather").append(response.DailyForecasts[0].Day[0].IconPhrase);
-            var iconName = response.DailyForecasts[0].Day[0].IconPhrase;
+            $("#weather").html("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
+            $("#weather").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
+            var iconName = response.DailyForecasts[0].Day.IconPhrase;
             if (iconName === "Sunny") {
                 ("#weather").append('<img src="/assets/sunny.png>');
             }
