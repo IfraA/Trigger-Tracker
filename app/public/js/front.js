@@ -77,7 +77,16 @@ window.onload = (function () {
             defaultPage();
         }
     } else {
-        getCordsLocation();
+        // geolocation is not supported
+        // get your location some other way
+        console.log('geolocation is not enabled on this browser');
+        alert("Please enter your location");
+        //load the default data
+        if ($('body').is('.yellow')) {
+            setTimeout(function () {
+                window.location.href = "/index";
+            }, 1250);
+        }
         defaultPage();
     }
 
@@ -147,17 +156,17 @@ window.onload = (function () {
         $.ajax({
             url: queryURL,
             method: "GET",
-            // dataType: "jasonp",
-            // cache: true, //for better response time
         }).then(function (response) {
-            console.log(response);
+            console.log("response: " + response.DailyForecasts[0].Day.Icon);
 
-            $("#weather").append(response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit);
-            $("#weather").append(response.DailyForecasts[0].Day.IconPhrase);
-            var iconName = response.DailyForecasts[0].Day[0].IconPhrase;
+            $("#weather").html("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
+            $("#weather").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
+            var iconName = response.DailyForecasts[0].Day.IconPhrase;
             if (iconName === "Sunny") {
                 ("#imgDiv").append('<img src="/assets/sunny.png">');
-            } else { console.log(empty) };
+            } else {
+                console.log(empty)
+            };
             $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
     }
