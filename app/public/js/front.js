@@ -1,7 +1,7 @@
 //global variable
 
 var locationKey = "";
-
+var city = $('#userInput').val();
 // prompt user to use current gelocation
 window.onload = (function () {
 
@@ -21,6 +21,7 @@ window.onload = (function () {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
+
                             }
                         },
                         function error(error_message) {
@@ -45,7 +46,6 @@ window.onload = (function () {
                                     window.location.href = "/index";
                                 }, 1250);
                             }
-
                         },
                         function error(error_message) {
                             // for when getting location results in an error
@@ -95,7 +95,7 @@ window.onload = (function () {
     function getCordsLocation(currentCords) {
         // var currentLat = position.coords.latitude;
         // var currentLong = position.coords.longitude;
-        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+        var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
         var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=" + apikey + "&q=" + currentCords + "&language=en-us&details=true";
         $.ajax({
             url: queryURL,
@@ -112,9 +112,9 @@ window.onload = (function () {
 
     //default results for sacramento upon loading of index page
     function defaultPage() {
-        var city = "Sacramento";
+        var defaultcity = Sacramento;
         dafaultLocationKey = 347627;
-        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+        var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
         var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/347627?apikey=" + apikey + "&language=en-us&details=true&metric=true";
         $.ajax({
             url: queryURL,
@@ -127,6 +127,7 @@ window.onload = (function () {
             $("#temperature").html("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
             $("#temperature").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
             var iconName = response.DailyForecasts[0].Day.IconPhrase;
+            console.log(response.DailyForecasts[0].Day.IconPhrase);
             if (iconName === "Sunny") {
                 ("#icon").append('<img src="/assets/sunny.png">');
             }
@@ -141,7 +142,7 @@ window.onload = (function () {
         // var locationKey = "";
         // var city = document.getElementById('#userInput').value;
         var city = $('#city').val();
-        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+        var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
         var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=" + apikey + "&q=" + city + "&language=en-us&details=true&alias=Always";
         $.ajax({
             url: queryURL,
@@ -158,8 +159,8 @@ window.onload = (function () {
 
     // function get dailyforecast for temperature
     function dailyTemp() {
-        var city = $('#city').val();
-        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+        var city = $('#cityName').val();
+        var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
         var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + locationKey + "?apikey=" + apikey + "&language=en-us&details=true&metric=false";
         $.ajax({
             url: queryURL,
@@ -170,13 +171,26 @@ window.onload = (function () {
             $("#temperature").append("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
             $("#temperature").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
             var iconName = response.DailyForecasts[0].Day.IconPhrase;
-            if (iconName === "Sunny") {
+            console.log(response.DailyForecasts[0].Day.IconPhrase);
+            //create conditions to display icons for weather
+            if (iconName === "Sunny" || iconName === "Mostly Sunny" || iconName === "Partly Sunny" || iconName === "Hazy Sunshine") {
                 $("#icon").append('<img src="/assets/sunny-y.png">');
-            } else {
-                console.log(empty);
+            } else if (iconName === "Mostly Cloudy" || iconName === "Cloudy" || iconName === "Dreary (Overcast)" || iconName === "Fog") {
+                $("#icon").append('<img src="/assets/cloudy-y.png">');
+            } else if (iconName === "Partly Sunny w/ T-Storms" || iconName === "Mostly Cloudy w/ Showers" || iconName === "T-Storms") {
+                $("#icon").append('<img src="/assets/thunderstorm-y.png">');
+            } else if (iconName === "Rain" || iconName === "Showers") {
+                $("#icon").append('<img src="/assets/rain-y.png">');
+            } else if (iconName === "Hot" || iconName === "Cold") {
+                $("#icon").append('<img src="/assets/temperature-y.png">');
+            } else if (iconName === "Windy") {
+                $("#icon").append('<img src="/assets/windy-y.png">');
+            } else if (iconName === "Clear" || iconName === "Mostly Clear") {
+                $("#icon").append('<img src="/assets/windy-y.png">');
             }
             //display city name
             $("#cityName").append(city);
+            console.log(city);
             $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
     }
