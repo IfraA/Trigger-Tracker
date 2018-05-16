@@ -8,34 +8,30 @@ var allergenValue = 0;
 var dataset = [];
 
 //**replace with data from the api**
-var graphTriggers = ["airPresure", "temperature", "wind"];
+var graphTriggers = ["temperature", "wind", "humidity"];
 var circleTriggers = ["airQuality", "grass", "UVIndex", "ragweed", "mold"];
 
-for (i = 0; i < 24; i++) {
-    var number = Math.round(20 * Math.random());
-    Data.push(number);
-}
-console.log(Data);
 
 function hourlyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + city + "&language=en-us&details=true&alias=Always";
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=dea14Q4uZxrbTLoQ6xa8QL0lxA3vjEWk&language=en-us&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
     }).then(function (response) {
-
+        console.log(response);
+        getWeatherData(response);
     });
+    getTime();
 }
 
 //get the next 24 hours for labels
 function getTime() {
-    var amPM = "";
     var d = new Date();
     var currentHour = d.getHours();
     console.log(currentHour);
 
     //for loop 24 times
-    for (var i = 0; i < 24; i++) {
+    for (var i = 0; i < 12; i++) {
         //millitary time hour
         var thisHour = currentHour + i;
 
@@ -52,28 +48,30 @@ function getTime() {
         }
     }
     console.log(hours);
-    getWeatherData();
 }
 
-function getWeatherData() {
+function getWeatherData(data) {
 
-    for (k = 0; k < graphTriggers.length; k++) {
+    for (var k = 0; k < graphTriggers.length; k++) {
+        console.log(graphTriggers[k]);
         switch (graphTriggers[k]) {
-            case ("airPresure"):
-                dataset[k] = {
-                    label: 'Air Presure',
-                    data: Data,
-                    backgroundColor: "#ffe879",
-                    yAxisID: 'y-axis-1',
-                    type: 'bar'
-                };
-                break;
+            // case ("airPresure"):
+            //     dataset[k] = {
+            //         label: 'Air Presure',
+            //         data: [20, 30, 20, 10],
+            //         backgroundColor: "#ffe879",
+            //         yAxisID: 'y-axis-1',
+            //         xAsisID: 'x1',
+            //         type: 'bar'
+            //     };
+            //     break;
 
             case ("temperature"):
                 dataset[k] = {
                     label: 'Temperature',
-                    data: Data,
+                    data: createArray(data, 'Temperature.Value'),
                     yAxisID: 'y-axis-2',
+                    // xAsisID: 'x2',
                     borderColor: '#3498db',
                     fill: false,
                     type: 'line'
@@ -83,8 +81,9 @@ function getWeatherData() {
             case ("wind"):
                 dataset[k] = {
                     label: 'Wind Speed',
-                    data: Data,
+                    data: createArray(data, 'Wind.Speed.Value'),
                     yAxisID: "y-axis-2",
+                    // xAsisID: 'x2',
                     borderColor: "#3498db",
                     fill: false,
                     type: "line"
@@ -94,9 +93,10 @@ function getWeatherData() {
             case ("rain"):
                 dataset[k] = {
                     label: 'Rain',
-                    data: Data,
+                    data: createArray(data, 'Rain.Value'),
                     backgroundColor: "#ffe879",
-                    yAxisID: "y-axis-1",
+                    yAxisID: "y-axis-2",
+                    // xAsisID: 'x2',
                     type: 'bar'
                 };
                 break;
@@ -104,38 +104,35 @@ function getWeatherData() {
             case ("humidity"):
                 dataset[k] = {
                     label: 'Humidity',
-                    data: Data,
+                    data: createArray(data, 'RelativeHumidity'),
                     yAxisID: "y-axis-2",
+                    // xAsisID: 'x2',
                     borderColor: "#3498db",
                     fill: false,
                     type: "line"
                 };
                 break;
 
+            case ("uvForcast"):
+                dataset[k] = {
+                    label: 'UV Index',
+                    data: createArray(data, 'UVIndex'),
+                    yAxisID: "y-axis-2",
+                    // xAsisID: 'x2',
+                    borderColor: "#3498db",
+                    fill: false,
+                    type: "line"
+                };
+
         }
-        console.log(dataset);
     }
+    console.log(dataset);
 
     var weatherChart = new Chart(chartId, {
         type: 'bar',
         data: {
             labels: hours,
-            datasets:
-                // [{
-                //     label: 'Temperature',
-                //     data: [1, 2, 3, 2],
-                //     yAxisID: "y-axis-2",
-                //     borderColor: "#3498db",
-                //     fill: false,
-                //     type: "line"
-                // }, {
-                //     label: 'Air Presure',
-                //     data: [2, 4, 5, 7],
-                //     backgroundColor: "#ffe879",
-                //     yAxisID: "y-axis-1",
-                //     type: 'bar'
-                // }]
-                dataset,
+            datasets: dataset,
         },
         options: {
             scales: {
@@ -145,11 +142,8 @@ function getWeatherData() {
                     position: "left",
                     id: "y-axis-1",
                     gridLines: {
-                        drawOnChartArea: false, // only want the grid lines for one axis to show up
+                        drawOnChartArea: false,
                     },
-                    ticks: {
-                        beginAtZero: true
-                    }
 
                 }, {
                     type: "linear",
@@ -157,127 +151,177 @@ function getWeatherData() {
                     position: "right",
                     id: "y-axis-2",
                     gridLines: {
-                        drawOnChartArea: false, // only want the grid lines for one axis to show up
+                        drawOnChartArea: false,
                     },
-                    ticks: {
-                        beginAtZero: true
-                    }
+                }],
+                xAxes: [{
+                    //     id: "x1",
+                    //     type: "catagory",
+                    //     position: "bottom",
+                    //     ticks: {
+                    //         min: 0,
+                    //         max: 12,
+                    //         stepSize: 1
+                    //     }
+                    // },
+                    // {
+                    //     id: "x2",
+                    //     type: "linear",
+                    //     position: "top",
+                    //     ticks: {
+                    //         min: 0,
+                    //         max: 12,
+                    //         stepSize: 3
+                    //     }
                 }]
             }
         }
     });
 }
 
+function createArray(info, key) {
+    console.log(info);
+    console.log(key);
+    var array = [];
+    for (var h = 0; h < 12; h++) {
+
+        console.log(Object.byString(info[h], key));
+        array.push(Object.byString(info[h], key));
+
+    }
+    console.log(array);
+    return array;
+}
+
+//code by alnitak
+Object.byString = function (o, s) {
+    s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+    s = s.replace(/^\./, ''); // strip a leading dot
+    var a = s.split('.');
+    for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i];
+        if (k in o) {
+            o = o[k];
+        } else {
+            return;
+        }
+    }
+    return o;
+};
+
+
+
+
 //pie chart functions
 
-function createCircles() {
-    for (j = 0; j < circleTriggers.length; j++) {
-        var container = $("<div>");
-        var containerID = '"container' + j + '"';
-        var canvas = $("<canvas>");
-        var canvasID = '"circle' + j + '"';
+// function createCircles() {
+//     for (var j = 0; j < circleTriggers.length; j++) {
+//         var container = $("<div>");
+//         var containerID = '"container' + j + '"';
+//         var canvas = $("<canvas>");
+//         var canvasID = '"circle' + j + '"';
 
-        container.addClass("circleContainer");
+//         container.addClass("circleContainer");
 
-        canvas.attr("id", canvasID);
-        console.log(canvasID);
-        canvas.attr("width", "400");
-        canvas.attr("height", "400");
+//         canvas.attr("id", canvasID);
+//         console.log(canvasID);
+//         canvas.attr("width", "400");
+//         canvas.attr("height", "400");
 
-        container.append(canvas);
+//         container.append(canvas);
 
-        $("#circles").append(container);
-        addCircleData(j, canvasID);
-    }
-}
+//         $("#circles").append(container);
+//         addCircleData(j, canvasID);
+//     }
+// }
 
-function addCircleData(index, chartId) {
+// function addCircleData(index, chartId) {
 
-    console.log(circleTriggers[index]);
-    switch (circleTriggers[index]) {
-        case "airQuality":
-            allergen = "airQuality";
-            allergenValue = 4;
-            break;
-        case "grass":
-            allergen = "grass";
-            allergenValue = 1;
-            break;
-        case "mold":
-            allergen = "mold";
-            allergenValue = 5;
-            break;
-        case "tree":
-            allergen = "tree";
-            allergenValue = 2;
-            break;
-        case "ragweed":
-            allergen = "ragweed";
-            allergenValue = 3;
-            break;
-        case "uvIndex":
-            allergen = "uvIndex";
-            allergenValue = 5;
-            break;
+//     console.log(circleTriggers[index]);
+//     switch (circleTriggers[index]) {
+//         case "airQuality":
+//             allergen = "airQuality";
+//             allergenValue = 4;
+//             break;
+//         case "grass":
+//             allergen = "grass";
+//             allergenValue = 1;
+//             break;
+//         case "mold":
+//             allergen = "mold";
+//             allergenValue = 5;
+//             break;
+//         case "tree":
+//             allergen = "tree";
+//             allergenValue = 2;
+//             break;
+//         case "ragweed":
+//             allergen = "ragweed";
+//             allergenValue = 3;
+//             break;
+//         case "uvIndex":
+//             allergen = "uvIndex";
+//             allergenValue = 5;
+//             break;
 
-        default:
-            break;
-    }
+//         default:
+//             break;
+//     }
 
-    //get value to create circle graph
-    air = 6 - allergenValue;
+//     //get value to create circle graph
+//     air = 6 - allergenValue;
 
-    pieDisplay();
+//     pieDisplay();
 
-    console.log(allergenValue);
-    console.log(air);
+//     console.log(allergenValue);
+//     console.log(air);
 
-    var ctx = document.getElementById(chartId).getContext('2d');
+//     var ctx = document.getElementById(chartId).getContext('2d');
 
-    var myPieChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["Good Air", "Bad Air"],
-            datasets: [{
-                backgroundColor: [
-                    color,
-                    "#3498db"
-                ],
-                data: [allergenValue, air]
-            }]
-        },
-        options: {
-            legend: {
-                display: false
-            }
-        }
-    });
-}
+//     var myPieChart = new Chart(ctx, {
+//         type: 'doughnut',
+//         data: {
+//             labels: ["Good Air", "Bad Air"],
+//             datasets: [{
+//                 backgroundColor: [
+//                     color,
+//                     "#3498db"
+//                 ],
+//                 data: [allergenValue, air]
+//             }]
+//         },
+//         options: {
+//             legend: {
+//                 display: false
+//             }
+//         }
+//     });
+// }
 
-function pieDisplay() {
-    //change color based on value
-    switch (allergenValue) {
-        case 1:
-            color = "#00a86b";
-            break;
-        case 2:
-            color = "#4fa134";
-            break;
-        case 3:
-            color = "#7d9500";
-            break;
-        case 4:
-            color = "#F7BD00";
-            break;
-        case 5:
-            color = "#d76000";
-            break;
-        case 6:
-            color = "#FF0000";
-            break;
-    }
-    console.log(color);
-}
+// function pieDisplay() {
+//     //change color based on value
+//     switch (allergenValue) {
+//         case 1:
+//             color = "#00a86b";
+//             break;
+//         case 2:
+//             color = "#4fa134";
+//             break;
+//         case 3:
+//             color = "#7d9500";
+//             break;
+//         case 4:
+//             color = "#F7BD00";
+//             break;
+//         case 5:
+//             color = "#d76000";
+//             break;
+//         case 6:
+//             color = "#FF0000";
+//             break;
+//     }
+//     console.log(color);
+// }
 
-getTime();
-createCircles();
+hourlyForcast();
+// createCircles();
