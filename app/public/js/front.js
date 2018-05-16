@@ -1,6 +1,7 @@
 //global variable
 
 var locationKey = "";
+var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
 
 // prompt user to use current gelocation
 window.onload = (function () {
@@ -95,7 +96,6 @@ window.onload = (function () {
     function getCordsLocation(currentCords) {
         // var currentLat = position.coords.latitude;
         // var currentLong = position.coords.longitude;
-        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
         var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=" + apikey + "&q=" + currentCords + "&language=en-us&details=true";
         $.ajax({
             url: queryURL,
