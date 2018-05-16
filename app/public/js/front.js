@@ -17,7 +17,7 @@ window.onload = (function () {
                             // for when getting location is a success
                             console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
                             getCordsLocation(position.coords.latitude + "," + position.coords.longitude);
-                            if ($('body').is('.yellow')) {
+                            if ($('body').is('.reLoad')) {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
@@ -27,7 +27,7 @@ window.onload = (function () {
                             // for when getting location results in an error
                             console.error('An error has occured while retrieving location', error_message);
                             defaultPage();
-                            if ($('body').is('.yellow')) {
+                            if ($('body').is('.reLoad')) {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
@@ -40,7 +40,7 @@ window.onload = (function () {
                             // for when getting location is a success
                             console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
                             getCordsLocation(position.coords.latitude + "," + position.coords.longitude);
-                            if ($('body').is('.yellow')) {
+                            if ($('body').is('.reLoad')) {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
@@ -51,7 +51,7 @@ window.onload = (function () {
                             // for when getting location results in an error
                             console.error('An error has occured while retrieving location', error_message);
                             defaultPage();
-                            if ($('body').is('.yellow')) {
+                            if ($('body').is('.reLoad')) {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
@@ -69,7 +69,7 @@ window.onload = (function () {
             console.log('geolocation is not enabled on this browser');
             alert("Please enter your location");
             //load the default data
-            if ($('body').is('.yellow')) {
+            if ($('body').is('.reLoad')) {
                 setTimeout(function () {
                     window.location.href = "/index";
                 }, 1250);
@@ -169,8 +169,8 @@ window.onload = (function () {
             if (iconName === "Sunny") {
                 ("#imgDiv").append('<img src="/assets/sunny-y.png">');
             } else {
-                console.log(empty);
-            }
+                console.log(empty)
+            };
             //display city name
             $("#cityName").append(city);
             $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
