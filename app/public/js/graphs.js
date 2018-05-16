@@ -18,7 +18,7 @@ for (i = 0; i < 24; i++) {
 console.log(Data);
 
 function hourlyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD&q=" + city + "&language=en-us&details=true&alias=Always";
+    var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + city + "&language=en-us&details=true&alias=Always";
     $.ajax({
         url: queryURL,
         method: "GET",
