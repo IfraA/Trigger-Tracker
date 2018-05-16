@@ -39,14 +39,8 @@ app.set('view engine', 'handlebars');
 // Routes
 // =============================================================
 // require("./routes/api-routes.js")(app);
-app.use(require("./routes/html-routes.js"));
-
-
-app.get('/triggers', function (req, res) {
-  db.Triggers.findAll({}).then(function (triggers) {
-    console.log(triggers);
-  });
-});
+app.use(require("./routes/html-routes"));
+app.use(require("./controllers/triggers_controllers"));
 
 // Starts the server to begin listening
 // =============================================================

@@ -1,3 +1,2 @@
-INSERT INTO triggers (id, triggerName) VALUES ('User1','Pollen');
-INSERT INTO triggers (id, triggerName) VALUES ('User2','Smoke');
-INSERT INTO triggers (id, triggerName) VALUES ('User3','Smog');
+INSERT INTO triggers (email, passwords, firstName, lastName) 
+VALUES ("tgonzalez@yahoo.com", "Tony", "Tony", "Gonzalez");
