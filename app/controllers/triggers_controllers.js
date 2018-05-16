@@ -24,36 +24,56 @@ router.post("/sign-up", function (req, res) {
   var userInfo = req.body;
   console.log(userInfo)
   //Create new user with info
-  // Triggers set are coming back as 'on', triggers not set dont come in.
-  /*
-  { email: 'yubhv@aol.com',
-  password: '1234',
-  firstName: 'TOny',
-  lastName: 'gonzalez',
-  pollen: 'on' }
-  */
- 
-  // We have 3 triggers (pollen, smoke, smog)
-  // if pollen exists on userInfo, set it's value to true
   if (userInfo.pollen) {
     userInfo.pollen = true;
   }
-  if (userInfo.smoke) {
-    userInfo.smoke = true;
+  if (userInfo.temperature) {
+    userInfo.temperature = true;
   }
-  if (userInfo.smog) {
-    userInfo.smog = true;
+  if (userInfo.wind) {
+    userInfo.wind = true;
+  }
+  if (userInfo.rain) {
+    userInfo.rain = true;
+  }
+  if (userInfo.humidity) {
+    userInfo.humidity = true;
+  }
+  if (userInfo.uvIndex) {
+    userInfo.uvIndex = true;
+  }
+  if (userInfo.grass) {
+    userInfo.grass = true;
+  }
+  if (userInfo.ragWeed) {
+    userInfo.ragWeed = true;
+  }
+  if (userInfo.mold) {
+    userInfo.mold = true;
   }
 
-
-  db.Users.create(userInfo)
-
-  // triggers.create(
-  //   ["email, passwords, firstName, lastName",],
-  //   [req.body.email, req.body.passwords, req.body.firstName, req.body.lastName], function () {
-  //   res.redirect("/");
-  // });
+  db.Users.create(userInfo);
 });
 
+// router.get("/:id" function (req, res) {
+//   var userTriggers = find(req.params.id);
+//   res.render();
+// });
+
+
+router.post("/sign-in", function (req, res) {
+  var userSignIn = req.body;
+  console.log(userSignIn);
+  function validate() {
+    // var email = document.getElementById("email").value;
+    // var password = document.getElementById("password").value;
+    if (userSignIn.email == "tgonzalez888@yahoo.com" && userSignIn.password == "Tony") {
+      alert("Login successfull");
+    }
+      else {
+        alert("Incorrect email or password, please try again");
+    }
+  }
+});
 
 module.exports = router;
