@@ -1,6 +1,7 @@
 //global variable
 
 var locationKey = "";
+var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
 
 // prompt user to use current gelocation
 window.onload = (function () {
@@ -17,7 +18,7 @@ window.onload = (function () {
                             // for when getting location is a success
                             console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
                             getCordsLocation(position.coords.latitude + "," + position.coords.longitude);
-                            if ($('body').is('.yellow')) {
+                            if ($('body').is('.reLoad')) {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
@@ -27,7 +28,7 @@ window.onload = (function () {
                             // for when getting location results in an error
                             console.error('An error has occured while retrieving location', error_message);
                             defaultPage();
-                            if ($('body').is('.yellow')) {
+                            if ($('body').is('.reLoad')) {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
@@ -40,7 +41,7 @@ window.onload = (function () {
                             // for when getting location is a success
                             console.log("Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude);
                             getCordsLocation(position.coords.latitude + "," + position.coords.longitude);
-                            if ($('body').is('.yellow')) {
+                            if ($('body').is('.reLoad')) {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
@@ -51,7 +52,7 @@ window.onload = (function () {
                             // for when getting location results in an error
                             console.error('An error has occured while retrieving location', error_message);
                             defaultPage();
-                            if ($('body').is('.yellow')) {
+                            if ($('body').is('.reLoad')) {
                                 setTimeout(function () {
                                     window.location.href = "/index";
                                 }, 1250);
@@ -69,7 +70,7 @@ window.onload = (function () {
             console.log('geolocation is not enabled on this browser');
             alert("Please enter your location");
             //load the default data
-            if ($('body').is('.yellow')) {
+            if ($('body').is('.reLoad')) {
                 setTimeout(function () {
                     window.location.href = "/index";
                 }, 1250);
@@ -95,7 +96,7 @@ window.onload = (function () {
     function getCordsLocation(currentCords) {
         // var currentLat = position.coords.latitude;
         // var currentLong = position.coords.longitude;
-        var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + currentCords + "&language=en-us&details=true";
+        var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=" + apikey + "&q=" + currentCords + "&language=en-us&details=true";
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -113,7 +114,8 @@ window.onload = (function () {
     function defaultPage() {
         var city = "Sacramento";
         dafaultLocationKey = 347627;
-        var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/347627?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&language=en-us&details=true&metric=true";
+        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+        var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/347627?apikey=" + apikey + "&language=en-us&details=true&metric=true";
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -139,7 +141,8 @@ window.onload = (function () {
         // var locationKey = "";
         // var city = document.getElementById('#userInput').value;
         var city = $('#city').val();
-        var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&q=" + city + "&language=en-us&details=true&alias=Always";
+        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+        var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=" + apikey + "&q=" + city + "&language=en-us&details=true&alias=Always";
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -156,7 +159,8 @@ window.onload = (function () {
     // function get dailyforecast for temperature
     function dailyTemp() {
         var city = $('#city').val();
-        var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + locationKey + "?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&language=en-us&details=true&metric=false";
+        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+        var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + locationKey + "?apikey=" + apikey + "&language=en-us&details=true&metric=false";
         $.ajax({
             url: queryURL,
             method: "GET",
@@ -167,10 +171,10 @@ window.onload = (function () {
             $("#temperature").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
             var iconName = response.DailyForecasts[0].Day.IconPhrase;
             if (iconName === "Sunny") {
-                ("#imgDiv").append('<img src="/assets/sunny-y.png">');
+                $("#icon").append('<img src="/assets/sunny-y.png">');
             } else {
-                console.log(empty);
-            }
+                console.log(empty)
+            };
             //display city name
             $("#cityName").append(city);
             $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
