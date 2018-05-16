@@ -1,7 +1,7 @@
 //global variable
 
 var locationKey = "";
-var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
+var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
 
 // prompt user to use current gelocation
 window.onload = (function () {
@@ -114,7 +114,6 @@ window.onload = (function () {
     function defaultPage() {
         var city = "Sacramento";
         dafaultLocationKey = 347627;
-        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
         var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/347627?apikey=" + apikey + "&language=en-us&details=true&metric=true";
         $.ajax({
             url: queryURL,
@@ -141,7 +140,6 @@ window.onload = (function () {
         // var locationKey = "";
         // var city = document.getElementById('#userInput').value;
         var city = $('#city').val();
-        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
         var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=" + apikey + "&q=" + city + "&language=en-us&details=true&alias=Always";
         $.ajax({
             url: queryURL,
@@ -159,7 +157,6 @@ window.onload = (function () {
     // function get dailyforecast for temperature
     function dailyTemp() {
         var city = $('#city').val();
-        var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
         var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + locationKey + "?apikey=" + apikey + "&language=en-us&details=true&metric=false";
         $.ajax({
             url: queryURL,
@@ -173,8 +170,8 @@ window.onload = (function () {
             if (iconName === "Sunny") {
                 $("#icon").append('<img src="/assets/sunny-y.png">');
             } else {
-                console.log(empty)
-            };
+                console.log(empty);
+            }
             //display city name
             $("#cityName").append(city);
             $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
