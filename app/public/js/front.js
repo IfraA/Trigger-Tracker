@@ -165,8 +165,8 @@ window.onload = (function () {
             if (iconName === "Sunny") {
                 ("#imgDiv").append('<img src="/assets/sunny.png">');
             } else {
-                console.log(empty)
-            };
+                console.log(empty);
+            }
             $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
         });
     }
