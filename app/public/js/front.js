@@ -2,20 +2,22 @@
 
 var locationKey = "";
 var city = $('#userInput').val();
-// prompt user to use current gelocation
+//check if location key already exits in session storage
 if (sessionStorage.getItem("noNavigator")) {
     if (window.location.href !== "/index") {
         window.location.href = "/index";
     }
 }
+//save location key in sessions storage and then load index page
 else if (sessionStorage.getItem("locationKey")) {
     locationKey = sessionStorage.getItem("locationKey");
+    //clear the data
+
     //load the next page to display data with the current location cords
-    clear();
     dailyTemp();
 }
 else {
-
+    // prompt user to use current gelocation
     window.onload = (function () {
 
 
@@ -107,10 +109,10 @@ function getCordsLocation(currentCords) {
 
 //default results for sacramento upon loading of index page
 function defaultPage() {
-    var defaultcity = Sacramento;
+    // var defaultcity = Sacramento;
     dafaultLocationKey = 347627;
     var apikey = "dea14Q4uZxrbTLoQ6xa8QL0lxA3vjEWk";
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/347627?apikey=" + apikey + "&language=en-us&details=true&metric=true";
+    var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/347627?apikey=" + apikey + "&language=en-us&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -119,10 +121,10 @@ function defaultPage() {
     }).then(function (response) {
         console.log(response);
 
-        $("#temperature").html("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
-        $("#temperature").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
-        var iconName = response.DailyForecasts[0].Day.IconPhrase;
-        console.log(response.DailyForecasts[0].Day.IconPhrase);
+        $("#temperature").html("<p>" + response[0].ApparentTemperature.Imperial.Value + " " + response[0].ApparentTemperature.Imperial.Unit + "</p>");
+        $("#temperature").append("<p>" + response[0].WeatherText + "</p>");
+        var iconName = response[0].WeatherText;
+        console.log(response[0].WeatherText);
         if (iconName === "Sunny") {
             ("#icon").append('<img src="/assets/sunny.png">');
         }
@@ -155,19 +157,19 @@ function getCityLocation(city) {
 function dailyTemp() {
 
     var apikey = "dea14Q4uZxrbTLoQ6xa8QL0lxA3vjEWk";
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/" + locationKey + "?apikey=" + apikey + "&language=en-us&details=true&metric=false";
+    var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + locationKey + "?apikey=" + apikey + "&language=en-us&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
     }).then(function (response) {
+        //clear the location key from seassion storage
         sessionStorage.removeItem("locationKey");
+        console.log(response);
 
-        console.log("response: " + response.DailyForecasts[0].Day.Icon);
-
-        $("#temperature").append("<p>" + response.DailyForecasts[0].Temperature.Maximum.Value + " " + response.DailyForecasts[0].Temperature.Maximum.Unit + "</p>");
-        $("#temperature").append("<p>" + response.DailyForecasts[0].Day.IconPhrase + "</p>");
-        var iconName = response.DailyForecasts[0].Day.IconPhrase;
-        console.log(response.DailyForecasts[0].Day.IconPhrase);
+        $("#temperature").html("<p>" + response[0].ApparentTemperature.Imperial.Value + " " + response[0].ApparentTemperature.Imperial.Unit + "</p>");
+        $("#temperature").append("<p>" + response[0].WeatherText + "</p>");
+        var iconName = response[0].WeatherText;
+        console.log(response[0].WeatherText);
         //create conditions to display icons for weather
         if (iconName === "Sunny" || iconName === "Mostly Sunny" || iconName === "Partly Sunny" || iconName === "Hazy Sunshine") {
             $("#icon").append('<img src="/assets/sunny-y.png">');
@@ -187,7 +189,7 @@ function dailyTemp() {
         //display city name
         $("#cityName").append(city);
         console.log(city);
-        $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
+        // $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
     });
 }
 
