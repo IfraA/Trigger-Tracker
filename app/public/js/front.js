@@ -15,8 +15,7 @@ else if (sessionStorage.getItem("locationKey")) {
 
     //load the next page to display data with the current location cords
     dailyTemp();
-}
-else {
+} else {
     // prompt user to use current gelocation
     window.onload = (function () {
 
@@ -88,7 +87,7 @@ function handleError(error_message) {
 function getCordsLocation(currentCords) {
     // var currentLat = position.coords.latitude;
     // var currentLong = position.coords.longitude;
-    var apikey = "dea14Q4uZxrbTLoQ6xa8QL0lxA3vjEWk";
+    var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
     var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=" + apikey + "&q=" + currentCords + "&language=en-us&details=true";
     $.ajax({
         url: queryURL,
@@ -111,7 +110,7 @@ function getCordsLocation(currentCords) {
 function defaultPage() {
     // var defaultcity = Sacramento;
     dafaultLocationKey = 347627;
-    var apikey = "dea14Q4uZxrbTLoQ6xa8QL0lxA3vjEWk";
+    var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/347627?apikey=" + apikey + "&language=en-us&details=true";
     $.ajax({
         url: queryURL,
@@ -138,7 +137,7 @@ function getCityLocation(city) {
     // var city = ('#userInput').value;
     // var locationKey = "";
     // var city = document.getElementById('#userInput').value;
-    var apikey = "dea14Q4uZxrbTLoQ6xa8QL0lxA3vjEWk";
+    var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
     var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=" + apikey + "&q=" + city + "&language=en-us&details=true&alias=Always";
     $.ajax({
         url: queryURL,
@@ -156,7 +155,7 @@ function getCityLocation(city) {
 // function get dailyforecast for temperature
 function dailyTemp() {
 
-    var apikey = "dea14Q4uZxrbTLoQ6xa8QL0lxA3vjEWk";
+    var apikey = "qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8";
     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + locationKey + "?apikey=" + apikey + "&language=en-us&details=true";
     $.ajax({
         url: queryURL,
@@ -192,4 +191,3 @@ function dailyTemp() {
         // $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
     });
 }
-

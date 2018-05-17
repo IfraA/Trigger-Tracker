@@ -13,7 +13,7 @@ var circleTriggers = ["airQuality", "grass", "UVIndex", "ragweed", "mold"];
 
 
 function hourlyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=dea14Q4uZxrbTLoQ6xa8QL0lxA3vjEWk&language=en-us&details=true";
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=qiFHdGlcXwcyPvEO6lVxQ5YlYpqfGCs8&language=en-us&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -214,114 +214,114 @@ Object.byString = function (o, s) {
 
 //pie chart functions
 
-// function createCircles() {
-//     for (var j = 0; j < circleTriggers.length; j++) {
-//         var container = $("<div>");
-//         var containerID = '"container' + j + '"';
-//         var canvas = $("<canvas>");
-//         var canvasID = '"circle' + j + '"';
+function createCircles() {
+    for (var j = 0; j < circleTriggers.length; j++) {
+        var container = $("<div>");
+        var containerID = '"container' + j + '"';
+        var canvas = $("<canvas>");
+        var canvasID = '"circle' + j + '"';
 
-//         container.addClass("circleContainer");
+        container.addClass("circleContainer");
 
-//         canvas.attr("id", canvasID);
-//         console.log(canvasID);
-//         canvas.attr("width", "400");
-//         canvas.attr("height", "400");
+        canvas.attr("id", canvasID);
+        console.log(canvasID);
+        canvas.attr("width", "400");
+        canvas.attr("height", "400");
 
-//         container.append(canvas);
+        container.append(canvas);
 
-//         $("#circles").append(container);
-//         addCircleData(j, canvasID);
-//     }
-// }
+        $("#circles").append(container);
+        addCircleData(j, canvasID);
+    }
+}
 
-// function addCircleData(index, chartId) {
+function addCircleData(index, chartId) {
 
-//     console.log(circleTriggers[index]);
-//     switch (circleTriggers[index]) {
-//         case "airQuality":
-//             allergen = "airQuality";
-//             allergenValue = 4;
-//             break;
-//         case "grass":
-//             allergen = "grass";
-//             allergenValue = 1;
-//             break;
-//         case "mold":
-//             allergen = "mold";
-//             allergenValue = 5;
-//             break;
-//         case "tree":
-//             allergen = "tree";
-//             allergenValue = 2;
-//             break;
-//         case "ragweed":
-//             allergen = "ragweed";
-//             allergenValue = 3;
-//             break;
-//         case "uvIndex":
-//             allergen = "uvIndex";
-//             allergenValue = 5;
-//             break;
+    console.log(circleTriggers[index]);
+    switch (circleTriggers[index]) {
+        case "airQuality":
+            allergen = "airQuality";
+            allergenValue = 4;
+            break;
+        case "grass":
+            allergen = "grass";
+            allergenValue = 1;
+            break;
+        case "mold":
+            allergen = "mold";
+            allergenValue = 5;
+            break;
+        case "tree":
+            allergen = "tree";
+            allergenValue = 2;
+            break;
+        case "ragweed":
+            allergen = "ragweed";
+            allergenValue = 3;
+            break;
+        case "uvIndex":
+            allergen = "uvIndex";
+            allergenValue = 5;
+            break;
 
-//         default:
-//             break;
-//     }
+        default:
+            break;
+    }
 
-//     //get value to create circle graph
-//     air = 6 - allergenValue;
+    //get value to create circle graph
+    air = 6 - allergenValue;
 
-//     pieDisplay();
+    pieDisplay();
 
-//     console.log(allergenValue);
-//     console.log(air);
+    console.log(allergenValue);
+    console.log(air);
 
-//     var ctx = document.getElementById(chartId).getContext('2d');
+    var ctx = document.getElementById(chartId).getContext('2d');
 
-//     var myPieChart = new Chart(ctx, {
-//         type: 'doughnut',
-//         data: {
-//             labels: ["Good Air", "Bad Air"],
-//             datasets: [{
-//                 backgroundColor: [
-//                     color,
-//                     "#3498db"
-//                 ],
-//                 data: [allergenValue, air]
-//             }]
-//         },
-//         options: {
-//             legend: {
-//                 display: false
-//             }
-//         }
-//     });
-// }
+    var myPieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["Good Air", "Bad Air"],
+            datasets: [{
+                backgroundColor: [
+                    color,
+                    "#3498db"
+                ],
+                data: [allergenValue, air]
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
+        }
+    });
+}
 
-// function pieDisplay() {
-//     //change color based on value
-//     switch (allergenValue) {
-//         case 1:
-//             color = "#00a86b";
-//             break;
-//         case 2:
-//             color = "#4fa134";
-//             break;
-//         case 3:
-//             color = "#7d9500";
-//             break;
-//         case 4:
-//             color = "#F7BD00";
-//             break;
-//         case 5:
-//             color = "#d76000";
-//             break;
-//         case 6:
-//             color = "#FF0000";
-//             break;
-//     }
-//     console.log(color);
-// }
+function pieDisplay() {
+    //change color based on value
+    switch (allergenValue) {
+        case 1:
+            color = "#00a86b";
+            break;
+        case 2:
+            color = "#4fa134";
+            break;
+        case 3:
+            color = "#7d9500";
+            break;
+        case 4:
+            color = "#F7BD00";
+            break;
+        case 5:
+            color = "#d76000";
+            break;
+        case 6:
+            color = "#FF0000";
+            break;
+    }
+    console.log(color);
+}
 
 hourlyForcast();
-// createCircles();
+createCircles();
