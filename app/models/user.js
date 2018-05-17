@@ -17,11 +17,35 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    smog: {
+    rain: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    smoke: {
+    wind: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    humidity: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    temperature: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    uvIndex: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    ragWeed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    grass: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    mold: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     }

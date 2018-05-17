@@ -1,3 +1,6 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
 .smallLogo {
     width: 300px;
     height: 300px;
@@ -67,7 +70,7 @@ margin-right: 30px;
 }
 
 #weather {
-    border: white solid 1px;
+    
     /* background-color: white; */
     min-height: 300px;
     width: 80%;
@@ -79,6 +82,30 @@ margin-right: 30px;
     font-style: bold;
     color: #FABC00;
     font-size: 30px;
+}
+#temperature{
+    font-size: 100px;
+    margin: 20px;
+    float: right;
+}
+#iconName{
+    font-size: 20px;
+    margin-top: 40px;
+    float: right;
+    position: relative;
+    margin-top: 100px;
+   
+}
+#icon{
+    position: relative;
+    float: left;
+   width: 30px;
+   height: 30px;;
+}
+#cityName{
+font-size: 20px;
+float: right !important;
+margin-top: 150px;
 }
 
 #graph {
@@ -195,5 +222,5 @@ button.btn {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-;
+
 /* ----------------------------------------------------------------------- */

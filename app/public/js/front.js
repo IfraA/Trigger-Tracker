@@ -12,7 +12,7 @@ if (sessionStorage.getItem("noNavigator")) {
 else if (sessionStorage.getItem("locationKey")) {
     locationKey = sessionStorage.getItem("locationKey");
     //clear the data
-
+    clear();
     //load the next page to display data with the current location cords
     dailyTemp();
 } else {
@@ -47,6 +47,7 @@ else if (sessionStorage.getItem("locationKey")) {
                     window.location.href = "/index";
                 }, 1250);
             }
+            clear();
             defaultPage();
         }
 
@@ -54,13 +55,14 @@ else if (sessionStorage.getItem("locationKey")) {
 }
 
 $(document).ready(function () {
+    clear();
     $("#city-search").on("click", function (e) {
         e.preventDefault();
-        var city = $('#userInput').val();
+        city = $('#userInput').val();
         getCityLocation(city);
-
-    })
-})
+        //reset the form
+    });
+});
 
 function handleSuccess(position) {
     // for when getting location is a success
@@ -121,13 +123,26 @@ function defaultPage() {
         console.log(response);
 
         $("#temperature").html("<p>" + response[0].ApparentTemperature.Imperial.Value + " " + response[0].ApparentTemperature.Imperial.Unit + "</p>");
-        $("#temperature").append("<p>" + response[0].WeatherText + "</p>");
+        $("#iconName").html("<p>" + response[0].WeatherText + "</p>");
         var iconName = response[0].WeatherText;
         console.log(response[0].WeatherText);
-        if (iconName === "Sunny") {
-            ("#icon").append('<img src="/assets/sunny.png">');
+        //create conditions to display icons for weather
+        if (iconName === "Sunny" || iconName === "Mostly Sunny" || iconName === "Partly Sunny" || iconName === "Hazy Sunshine") {
+            $("#icon").html('<img src="/assets/sunny-y.png">');
+        } else if (iconName === "Mostly Cloudy" || iconName === "Cloudy" || iconName === "Dreary (Overcast)" || iconName === "Fog") {
+            $("#icon").html('<img src="/assets/cloudy-y.png">');
+        } else if (iconName === "Partly Sunny w/ T-Storms" || iconName === "Mostly Cloudy w/ Showers" || iconName === "T-Storms") {
+            $("#icon").html('<img src="/assets/thunderstorm-y.png">');
+        } else if (iconName === "Rain" || iconName === "Showers") {
+            $("#icon").html('<img src="/assets/rain-y.png">');
+        } else if (iconName === "Hot" || iconName === "Cold") {
+            $("#icon").html('<img src="/assets/temperature-y.png">');
+        } else if (iconName === "Windy") {
+            $("#icon").html('<img src="/assets/windy-y.png">');
+        } else if (iconName === "Clear" || iconName === "Mostly Clear") {
+            $("#icon").html('<img src="/assets/windy-y.png">');
         }
-        $("#cityName").append(Sacramento);
+        $("#cityName").html(SACRAMENTO);
         // $("#weather").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
     });
 }
@@ -166,28 +181,36 @@ function dailyTemp() {
         console.log(response);
 
         $("#temperature").html("<p>" + response[0].ApparentTemperature.Imperial.Value + " " + response[0].ApparentTemperature.Imperial.Unit + "</p>");
-        $("#temperature").append("<p>" + response[0].WeatherText + "</p>");
+        $("#iconName").html("<p>" + response[0].WeatherText + "</p>");
         var iconName = response[0].WeatherText;
         console.log(response[0].WeatherText);
         //create conditions to display icons for weather
         if (iconName === "Sunny" || iconName === "Mostly Sunny" || iconName === "Partly Sunny" || iconName === "Hazy Sunshine") {
-            $("#icon").append('<img src="/assets/sunny-y.png">');
+            $("#icon").html('<img src="/assets/sunny-y.png">');
         } else if (iconName === "Mostly Cloudy" || iconName === "Cloudy" || iconName === "Dreary (Overcast)" || iconName === "Fog") {
-            $("#icon").append('<img src="/assets/cloudy-y.png">');
+            $("#icon").html('<img src="/assets/cloudy-y.png">');
         } else if (iconName === "Partly Sunny w/ T-Storms" || iconName === "Mostly Cloudy w/ Showers" || iconName === "T-Storms") {
-            $("#icon").append('<img src="/assets/thunderstorm-y.png">');
+            $("#icon").html('<img src="/assets/thunderstorm-y.png">');
         } else if (iconName === "Rain" || iconName === "Showers") {
-            $("#icon").append('<img src="/assets/rain-y.png">');
+            $("#icon").html('<img src="/assets/rain-y.png">');
         } else if (iconName === "Hot" || iconName === "Cold") {
-            $("#icon").append('<img src="/assets/temperature-y.png">');
+            $("#icon").html('<img src="/assets/temperature-y.png">');
         } else if (iconName === "Windy") {
-            $("#icon").append('<img src="/assets/windy-y.png">');
+            $("#icon").html('<img src="/assets/windy-y.png">');
         } else if (iconName === "Clear" || iconName === "Mostly Clear") {
-            $("#icon").append('<img src="/assets/windy-y.png">');
+            $("#icon").html('<img src="/assets/windy-y.png">');
         }
         //display city name
-        $("#cityName").append(city);
+        $("#cityName").html(city);
         console.log(city);
         // $("#pollen").append(response.DailyForecasts[0].AirAndPollen[0].Name + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Value + "<br>" + response.DailyForecasts[0].AirAndPollen[0].Category + response.DailyForecasts[0].Day.Icon);
     });
 }
+//write a clear function
+function clear() {
+    $("#userInput").empty();
+    $("#temperature").empty();
+    $("#iconName").empty();
+    $("#icon").empty();
+    $("#cityName").empty();
+};
