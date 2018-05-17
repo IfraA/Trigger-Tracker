@@ -70,7 +70,7 @@ margin-right: 30px;
 }
 
 #weather {
-    border: white solid 1px;
+    
     /* background-color: white; */
     min-height: 300px;
     width: 80%;
@@ -86,20 +86,27 @@ margin-right: 30px;
 #temperature{
     font-size: 100px;
     margin: 20px;
-    /* float: right; */
+    float: right;
 }
 #iconName{
     font-size: 20px;
     margin-top: 40px;
-    /* float: right;
+    float: right;
     position: relative;
-    margin-top: 100px; */
+    margin-top: 100px;
    
 }
-/* #icon{
+#icon{
     position: relative;
-    border: solid white 1px;
-} */
+    float: left;
+   width: 30px;
+   height: 30px;;
+}
+#cityName{
+font-size: 20px;
+float: right !important;
+margin-top: 150px;
+}
 
 #graph {
     margin-top: 30px;
@@ -193,21 +200,14 @@ button.btn {
     outline: none !important;
 }
 
-<<<<<<< HEAD
 /* loading circle style */
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid darkslategray; /* dark grey */
-=======
-.loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid darkslategrey;
->>>>>>> html2
     border-radius: 50%;
     width: 80px;
     height: 80px;
     animation: spin 2s linear infinite;
-<<<<<<< HEAD
     margin-left: auto;
     margin-right: auto;
     opacity: 0.5;
@@ -216,22 +216,11 @@ button.btn {
     top: 80%;
     
 
-=======
-    position: absolute;
-    left: 45%;
-    bottom: 5%;
-    opacity: .5;
-    
->>>>>>> html2
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> html2
-;
 /* ----------------------------------------------------------------------- */
