@@ -8,9 +8,35 @@ var allergenValue = 0;
 var dataset = [];
 
 //**replace with data from the api**
-var graphTriggers = ["temperature", "wind", "humidity"];
+var graphTriggers = ["temperature", "rain", "wind"];
 var circleTriggers = ["airQuality", "grass", "UVIndex", "ragweed", "mold"];
 
+$("#sign-in").on("click", function (event) {
+    var user = $("#exampleInputEmail1").val().trim();
+    $.ajax("/triggers/email/" + user, {
+        type: "GET"
+    }).then(function (result) {
+        console.log(result);
+
+        var emptyArray1 = [];
+        var emptyArray2 = [];
+        var allergenArray = ["pollen", "temperature", "wind", "rain", "airQuality", "ragWeed", "grass", "mold", "humidity", "uvIndex"];
+        for (var index = 0; index < allergenArray.length; index++) {
+            if (result[index] === true) {
+                if (allergenArray[index] === "temperature" || allergenArray[index] === "wind" || allergenArray[index] === "rain" || allergenArray[index] === "humidity") {
+                    emptyArray1.push(allergenArray[index]);
+                } else if (allergenArray[index] === "airQuality" || allergenArray[index] === "ragWeed" || allergenArray[index] === "grass" || allergenArray[index] === "mold" || allergenArray[index] === "humidity" || allergenArray[index] === "uvIndex") {
+                    emptyArray2.push(allergenArray[index]);
+                }
+            }
+        }
+        graphTriggers = emptyArray1;
+        console.log(graphTriggers);
+        circleTriggers = emptyArray2;
+        console.log(circleTriggers);
+        window.location.href = "/index";
+    });
+});
 
 function hourlyForcast() {
     var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD&language=en-us&details=true";

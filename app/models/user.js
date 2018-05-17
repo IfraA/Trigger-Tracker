@@ -21,6 +21,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    airQuality: {
+      type: DataTypes.BOOLEAN,
+      degaultValue: false,
+    },
     wind: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

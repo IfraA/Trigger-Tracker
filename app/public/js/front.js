@@ -3,10 +3,6 @@
 var locationKey = "";
 var city = $('#userInput').val();
 
-document.getElementById(".btn-primary").onclick = function () {
-    location.href = "/sign-up";
-};
-
 //check if location key already exits in session storage
 if (sessionStorage.getItem("noNavigator")) {
     if (window.location.href !== "/index") {

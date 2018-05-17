@@ -38,6 +38,9 @@ router.post("/sign-up", function (req, res) {
   if (userInfo.rain) {
     userInfo.rain = true;
   }
+  if (userInfo.airQuality) {
+    userInfo.airQuality = true;
+  }
   if (userInfo.humidity) {
     userInfo.humidity = true;
   }
@@ -55,6 +58,7 @@ router.post("/sign-up", function (req, res) {
   }
 
   db.Users.create(userInfo);
+  res.render("index");
 });
 
 // router.get("/:id" function (req, res) {
@@ -94,6 +98,7 @@ router.get("/triggers/email/:email", function (req, res) {
       array.push(matched.temperature);
       array.push(matched.wind);
       array.push(matched.rain);
+      array.push(matched.airQuality);
       array.push(matched.ragWeed);
       array.push(matched.grass);
       array.push(matched.mold);
