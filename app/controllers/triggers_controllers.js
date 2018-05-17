@@ -76,4 +76,26 @@ router.post("/sign-in", function (req, res) {
   }
 });
 
+// grab by email
+router.get("/triggers/email/:email", function (req, res) {
+  query = req.params.email
+  db.Users.findOne({
+    where: {
+    email: query
+  }})
+    .then(function (matched) {
+      array = matched.pollen;
+      array.push(matched.temperature)
+      array.push(matched.wind)
+      array.push(matched.rain)
+      array.push(matched.ragWeed)
+      array.push(matched.grass)
+      array.push(matched.mold)
+      array.push(matched.humidity)
+      array.push(matched.uvIndex)
+      res.json(array);
+      console.log(array);
+    });
+});
+
 module.exports = router;
