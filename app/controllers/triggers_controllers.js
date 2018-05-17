@@ -7,22 +7,24 @@ var db = require("../models");
 // module.exports = function(router) { 
 router.get("/", function (req, res) {
   res.redirect("/triggers");
-})
+});
 
 // router to get contents of database to show onscreen
 router.get("/triggers/", function (req, res) {
   db.Users.findAll()
     .then(function (allTriggers) {
-      var hbsObject = { triggers: allTriggers };
+      var hbsObject = {
+        triggers: allTriggers
+      };
       res.render("index", hbsObject);
     });
 });
 
 
 router.post("/sign-up", function (req, res) {
-  
+
   var userInfo = req.body;
-  console.log(userInfo)
+  console.log(userInfo);
   //Create new user with info
   if (userInfo.pollen) {
     userInfo.pollen = true;
@@ -64,35 +66,39 @@ router.post("/sign-up", function (req, res) {
 router.post("/sign-in", function (req, res) {
   var userSignIn = req.body;
   console.log(userSignIn);
+
   function validate() {
     // var email = document.getElementById("email").value;
     // var password = document.getElementById("password").value;
     if (userSignIn.email == "tgonzalez888@yahoo.com" && userSignIn.password == "Tony") {
       alert("Login successfull");
-    }
-      else {
-        alert("Incorrect email or password, please try again");
+    } else {
+      alert("Incorrect email or password, please try again");
     }
   }
 });
 
 // grab by email
 router.get("/triggers/email/:email", function (req, res) {
-  query = req.params.email
+  var query = req.params.email;
+  console.log(query);
   db.Users.findOne({
-    where: {
-    email: query
-  }})
+      where: {
+        email: query
+      }
+    })
     .then(function (matched) {
-      array = matched.pollen;
-      array.push(matched.temperature)
-      array.push(matched.wind)
-      array.push(matched.rain)
-      array.push(matched.ragWeed)
-      array.push(matched.grass)
-      array.push(matched.mold)
-      array.push(matched.humidity)
-      array.push(matched.uvIndex)
+      console.log(matched);
+      var array = [];
+      array.push(matched.pollen);
+      array.push(matched.temperature);
+      array.push(matched.wind);
+      array.push(matched.rain);
+      array.push(matched.ragWeed);
+      array.push(matched.grass);
+      array.push(matched.mold);
+      array.push(matched.humidity);
+      array.push(matched.uvIndex);
       res.json(array);
       console.log(array);
     });
