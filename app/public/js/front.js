@@ -47,7 +47,7 @@ else if (sessionStorage.getItem("locationKey")) {
             alert("Please enter your location");
             //load the default data
             if ($('body').is('.reLoad')) {
-                sessionStorage.setItem("noNavigator", "")
+                sessionStorage.setItem("noNavigator", "");
                 setTimeout(function () {
                     window.location.href = "/index";
                 }, 1250);
@@ -218,4 +218,4 @@ function clear() {
     $("#iconName").empty();
     $("#icon").empty();
     $("#cityName").empty();
-};
+}
