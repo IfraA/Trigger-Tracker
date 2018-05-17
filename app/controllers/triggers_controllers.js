@@ -83,10 +83,10 @@ router.get("/triggers/email/:email", function (req, res) {
   var query = req.params.email;
   console.log(query);
   db.Users.findOne({
-      where: {
-        email: query
-      }
-    })
+    where: {
+      email: query
+    }
+  })
     .then(function (matched) {
       console.log(matched);
       var array = [];
