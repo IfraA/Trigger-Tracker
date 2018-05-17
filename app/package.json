@@ -12,12 +12,15 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.0.11",
     "method-override": "^2.3.10",
+    "mocha": "^5.1.1",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
+    "nightmare": "^3.0.1",
     "nodemon": "^1.17.4",
     "requirejs": "^2.3.5",
     "sequelize": "^4.37.7"
