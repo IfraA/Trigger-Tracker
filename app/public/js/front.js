@@ -16,6 +16,7 @@ else if (sessionStorage.getItem("locationKey")) {
     //load the next page to display data with the current location cords
     dailyTemp();
 }
+
 else {
     // prompt user to use current gelocation
     window.onload = (function () {

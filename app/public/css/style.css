@@ -193,14 +193,21 @@ button.btn {
     outline: none !important;
 }
 
+<<<<<<< HEAD
 /* loading circle style */
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid darkslategray; /* dark grey */
+=======
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid darkslategrey;
+>>>>>>> html2
     border-radius: 50%;
     width: 80px;
     height: 80px;
     animation: spin 2s linear infinite;
+<<<<<<< HEAD
     margin-left: auto;
     margin-right: auto;
     opacity: 0.5;
@@ -209,11 +216,22 @@ button.btn {
     top: 80%;
     
 
+=======
+    position: absolute;
+    left: 45%;
+    bottom: 5%;
+    opacity: .5;
+    
+>>>>>>> html2
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> html2
 ;
 /* ----------------------------------------------------------------------- */
