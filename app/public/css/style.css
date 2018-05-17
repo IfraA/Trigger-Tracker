@@ -1,3 +1,6 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
 .smallLogo {
     width: 300px;
     height: 300px;
@@ -80,6 +83,23 @@ margin-right: 30px;
     color: #FABC00;
     font-size: 30px;
 }
+#temperature{
+    font-size: 100px;
+    margin: 20px;
+    /* float: right; */
+}
+#iconName{
+    font-size: 20px;
+    margin-top: 40px;
+    /* float: right;
+    position: relative;
+    margin-top: 100px; */
+   
+}
+/* #icon{
+    position: relative;
+    border: solid white 1px;
+} */
 
 #graph {
     margin-top: 30px;
