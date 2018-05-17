@@ -214,7 +214,18 @@ Object.byString = function (o, s) {
 
 //pie chart functions
 
-function createCircles() {
+function dailyForcast() {
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/335315?apikey=CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD&details=true";
+    $.ajax({
+        url: queryURL,
+        method: "GET",
+    }).then(function (response) {
+        console.log(response.DailyForecasts[0].AirAndPollen[0]);
+        createCircles(response.DailyForecasts[0].AirAndPollen);
+    });
+}
+
+function createCircles(airData) {
     for (var j = 0; j < circleTriggers.length; j++) {
         var container = $("<div>");
         var containerID = '"container' + j + '"';
@@ -231,37 +242,43 @@ function createCircles() {
         container.append(canvas);
 
         $("#circles").append(container);
-        addCircleData(j, canvasID);
+        addCircleData(j, canvasID, airData);
     }
 }
 
-function addCircleData(index, chartId) {
+function addCircleData(index, chartId, data) {
 
     console.log(circleTriggers[index]);
     switch (circleTriggers[index]) {
         case "airQuality":
             allergen = "airQuality";
-            allergenValue = 4;
+            allergenValue = getValue(0, data);
+            console.log(allergenValue);
             break;
         case "grass":
             allergen = "grass";
-            allergenValue = 1;
+            allergenValue = getValue(1, data);
+            console.log(allergenValue);
             break;
         case "mold":
             allergen = "mold";
-            allergenValue = 5;
+            allergenValue = getValue(2, data);
+            console.log(allergenValue);
             break;
         case "tree":
             allergen = "tree";
-            allergenValue = 2;
+            allergenValue = getValue(3, data);
+            console.log(allergenValue);
             break;
         case "ragweed":
             allergen = "ragweed";
-            allergenValue = 3;
+            allergenValue = getValue(4, data);
+            console.log(allergenValue);
             break;
         case "uvIndex":
             allergen = "uvIndex";
-            allergenValue = 5;
+            allergenValue = getValue(5, data);
+            console.log(allergenValue);
             break;
 
         default:
@@ -273,8 +290,8 @@ function addCircleData(index, chartId) {
 
     pieDisplay();
 
-    console.log(allergenValue);
-    console.log(air);
+    // console.log(allergenValue);
+    // console.log(air);
 
     var ctx = document.getElementById(chartId).getContext('2d');
 
@@ -323,5 +340,10 @@ function pieDisplay() {
     console.log(color);
 }
 
+function getValue(item, info) {
+    console.log(info[item]);
+    return info[item].CategoryValue;
+}
+
 hourlyForcast();
-createCircles();
+dailyForcast();
