@@ -4,6 +4,7 @@
     margin-right: auto;
     margin-left: auto;
 }
+
 /* ----------------------------------------------------------------------- */
 
 /* sign-in.handlebars */
@@ -12,8 +13,8 @@
     width: 500px;
     height: 400px;
     position: relative;
-    margin-left:auto;
-    margin-right: auto; 
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 150px;
     margin-bottom: 100px;
 }
@@ -21,16 +22,16 @@
 /* ----------------------------------------------------------------------- */
 
 /*  index.handlebars */
-.navbar{
-    color:white !important;
+
+.navbar {
+    color: white !important;
     background: black;
     font-size: 15px;
-      
 }
-.bg-light{
+
+.bg-light {
     background-color: black !important;
     border-color: black !important;
-
 }
 
 .nav-link {
@@ -39,23 +40,23 @@
     margin: 10px;
     margin-left: 30px;
 }
+
 .nav-link:hover {
-    color:#FABC00  !important;
+    color: #FABC00 !important;
 }
 
-
-#logo-2{
-width: 60px;
-height: 70px;
-background-color: black;
-margin-right: 30px;
+#logo-2 {
+    width: 60px;
+    height: 70px;
+    background-color: black;
+    margin-right: 30px;
 }
 
-.btn-outline-success{
+.btn-outline-success {
     border-color: #FABC00 !important;
 }
 
-.form-inline{
+.form-inline {
     margin-right: 150px;
 }
 
@@ -102,8 +103,6 @@ margin-right: 30px;
     width: 100%;
 }
 
-
-
 /* 
 .form-control {
     margin-top: 35px;
@@ -131,7 +130,6 @@ button.btn {
     margin-left: auto;
     margin-right: auto;
     padding: 150px 80px 50px 80px;
-
 }
 
 /* ----------------------------------------------------------------------- */
@@ -171,9 +169,12 @@ button.btn {
 }
 
 /* loading circle style */
+
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid darkslategray; /* dark grey */
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid darkslategray;
+    /* dark grey */
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -184,11 +185,13 @@ button.btn {
     position: absolute;
     left: 45%;
     top: 80%;
-    
-
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

@@ -6,6 +6,7 @@ var color = "";
 var air = 0;
 var allergenValue = 0;
 var dataset = [];
+var pieTitle = "";
 
 //**replace with data from the api**
 var graphTriggers = ["temperature", "rain", "wind"];
@@ -280,31 +281,37 @@ function addCircleData(index, chartId, data) {
             allergen = "airQuality";
             allergenValue = getValue(0, data);
             console.log(allergenValue);
+            pieTitle = "Air Quality";
             break;
         case "grass":
             allergen = "grass";
             allergenValue = getValue(1, data);
             console.log(allergenValue);
+            pieTitle = "Grass Pollen";
             break;
         case "mold":
             allergen = "mold";
             allergenValue = getValue(2, data);
             console.log(allergenValue);
+            pieTitle = "Mold";
             break;
         case "tree":
             allergen = "tree";
             allergenValue = getValue(3, data);
             console.log(allergenValue);
+            pieTitle = "Tree Pollen";
             break;
         case "ragweed":
             allergen = "ragweed";
             allergenValue = getValue(4, data);
             console.log(allergenValue);
+            pieTitle = "Ragweed Pollen";
             break;
         case "uvIndex":
             allergen = "uvIndex";
             allergenValue = getValue(5, data);
             console.log(allergenValue);
+            pieTitle = "UV Index";
             break;
 
         default:
@@ -336,6 +343,10 @@ function addCircleData(index, chartId, data) {
         options: {
             legend: {
                 display: false
+            },
+            title: {
+                display: true,
+                text: pieTitle
             }
         }
     });
