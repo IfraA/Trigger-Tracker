@@ -39,7 +39,7 @@ $("#sign-in").on("click", function (event) {
 });
 
 function hourlyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD&language=en-us&details=true";
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM&language=en-us&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -98,7 +98,7 @@ function getWeatherData(data) {
                     data: createArray(data, 'Temperature.Value'),
                     yAxisID: 'y-axis-2',
                     // xAsisID: 'x2',
-                    borderColor: '#3498db',
+                    borderColor: '#ffe879',
                     fill: false,
                     type: 'line'
                 };
@@ -108,7 +108,7 @@ function getWeatherData(data) {
                 dataset[k] = {
                     label: 'Wind Speed',
                     data: createArray(data, 'Wind.Speed.Value'),
-                    yAxisID: "y-axis-2",
+                    yAxisID: "y-axis-1",
                     // xAsisID: 'x2',
                     borderColor: "#3498db",
                     fill: false,
@@ -120,7 +120,7 @@ function getWeatherData(data) {
                 dataset[k] = {
                     label: 'Rain',
                     data: createArray(data, 'Rain.Value'),
-                    backgroundColor: "#ffe879",
+                    backgroundColor: "#3498db",
                     yAxisID: "y-axis-2",
                     // xAsisID: 'x2',
                     type: 'bar'
@@ -135,7 +135,7 @@ function getWeatherData(data) {
                     // xAsisID: 'x2',
                     borderColor: "#3498db",
                     fill: false,
-                    type: "line"
+                    type: "bar"
                 };
                 break;
 
@@ -145,7 +145,7 @@ function getWeatherData(data) {
                     data: createArray(data, 'UVIndex'),
                     yAxisID: "y-axis-2",
                     // xAsisID: 'x2',
-                    borderColor: "#3498db",
+                    borderColor: "#ffe879",
                     fill: false,
                     type: "line"
                 };
@@ -241,7 +241,7 @@ Object.byString = function (o, s) {
 //pie chart functions
 
 function dailyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/335315?apikey=CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD&details=true";
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/335315?apikey=ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -327,10 +327,10 @@ function addCircleData(index, chartId, data) {
             labels: ["Good Air", "Bad Air"],
             datasets: [{
                 backgroundColor: [
-                    color,
-                    "#3498db"
+                    "#0F1112",
+                    color
                 ],
-                data: [allergenValue, air]
+                data: [air, allergenValue]
             }]
         },
         options: {

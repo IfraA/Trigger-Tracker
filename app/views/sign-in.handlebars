@@ -24,7 +24,7 @@
             <div id="buttonDiv">
                 <button id="sign-in" type="submit" class="btn btn-primary">Sign In</button>
 
-                <button type="submit" class="btn btn-primary" id="sign-up">Sign Up</button>
+                <button type="submit" class="btn btn-primary" id="sign-up-btn">Sign Up</button>
             </div>
         </form>
     </div>
@@ -32,11 +32,14 @@
 
 </body>
 
+<script src="/js/graphs.js"></script>
+<script src="js/front.js"></script>
+
 <script>
 
     $(document).ready(function () {
 
-        $("#sign-up").on("click", function (event) {
+        $("#sign-up-btn").on("click", function (event) {
             location.href = "/sign-up";
         });
 

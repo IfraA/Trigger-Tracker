@@ -78,11 +78,11 @@ function handleError(error_message) {
     // defaultPage();
     var defaultLocationKey = 347627;
     sessionStorage.setItem("locationKey", defaultLocationKey);
-    // if ($('body').is('.reLoad')) {
-    //     setTimeout(function () {
-    window.location.href = "/index";
-    //     }, 1250);
-    // }
+    if ($('body').is('.reLoad')) {
+        //     setTimeout(function () {
+        window.location.href = "/index";
+        //     }, 1250);
+    }
 
 }
 
@@ -90,7 +90,7 @@ function handleError(error_message) {
 function getCordsLocation(currentCords) {
     // var currentLat = position.coords.latitude;
     // var currentLong = position.coords.longitude;
-    var apikey = "CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD";
+    var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
     var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=" + apikey + "&q=" + currentCords + "&language=en-us&details=true";
     $.ajax({
         url: queryURL,
@@ -100,11 +100,11 @@ function getCordsLocation(currentCords) {
         locationKey = response.Key;
         console.log(locationKey);
         sessionStorage.setItem("locationKey", locationKey);
-        // if ($('body').is('.reLoad')) {
-        //     setTimeout(function () {
-        window.location.href = "/index";
-        //     }, 1250);
-        // }
+        if ($('body').is('.reLoad')) {
+            //     setTimeout(function () {
+            window.location.href = "/index";
+            //     }, 1250);
+        }
     });
 
 }
@@ -113,7 +113,7 @@ function getCordsLocation(currentCords) {
 function defaultPage() {
     // var defaultcity = Sacramento;
     dafaultLocationKey = 347627;
-    var apikey = "CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD";
+    var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/347627?apikey=" + apikey + "&language=en-us&details=true";
     $.ajax({
         url: queryURL,
@@ -153,7 +153,7 @@ function getCityLocation(city) {
     // var city = ('#userInput').value;
     // var locationKey = "";
     // var city = document.getElementById('#userInput').value;
-    var apikey = "CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD";
+    var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
     var queryURL = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=" + apikey + "&q=" + city + "&language=en-us&details=true&alias=Always";
     $.ajax({
         url: queryURL,
@@ -171,7 +171,7 @@ function getCityLocation(city) {
 // function get dailyforecast for temperature
 function dailyTemp() {
 
-    var apikey = "CJR5xPcfo0AAeqd9dqsWy5XYd2FCKzSD";
+    var apikey = "ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM";
     var queryURL = "http://dataservice.accuweather.com/currentconditions/v1/" + locationKey + "?apikey=" + apikey + "&language=en-us&details=true";
     $.ajax({
         url: queryURL,
