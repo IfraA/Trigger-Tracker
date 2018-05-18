@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize");
 
-sequelize = new Sequelize("triggers", "root", "root", {
+var Trigger = new Sequelize("triggers", "root", "root", {
   host: "localhost",
   dialect: "mysql",
   pool: {

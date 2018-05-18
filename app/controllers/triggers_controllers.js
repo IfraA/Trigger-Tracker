@@ -83,7 +83,7 @@ router.post("/sign-in", function (req, res) {
 });
 
 // grab by email
-router.get("/triggers/email/:email", function (req, res) {
+router.get("/triggers/:email", function (req, res) {
   var query = req.params.email;
   console.log(query);
   db.Users.findOne({

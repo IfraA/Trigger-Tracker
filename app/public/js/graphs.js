@@ -14,7 +14,7 @@ var circleTriggers = ["airQuality", "grass", "UVIndex", "ragweed", "mold"];
 
 $("#sign-in").on("click", function (event) {
     var user = $("#exampleInputEmail1").val().trim();
-    $.ajax("/triggers/email/" + user, {
+    $.ajax("/triggers/" + user, {
         type: "GET"
     }).then(function (result) {
         console.log(result);
@@ -40,7 +40,7 @@ $("#sign-in").on("click", function (event) {
 });
 
 function hourlyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM&language=en-us&details=true";
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=QIFPbP9lhUU6n7cZZo6bw16xvduyTwKr&language=en-us&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -242,7 +242,7 @@ Object.byString = function (o, s) {
 //pie chart functions
 
 function dailyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/335315?apikey=ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM&details=true";
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/335315?apikey=QIFPbP9lhUU6n7cZZo6bw16xvduyTwKr&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
