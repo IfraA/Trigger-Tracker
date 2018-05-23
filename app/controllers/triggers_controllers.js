@@ -85,14 +85,14 @@ router.post("/sign-in", function (req, res) {
 // grab by email
 router.get("/triggers/:email", function (req, res) {
   var query = req.params.email;
-  console.log(query);
+  console.log("query is " + query);
   db.Users.findOne({
       where: {
         email: query
       }
     })
     .then(function (matched) {
-      console.log(matched);
+      console.log("HERE " + matched);
       var array = [];
       array.push(matched.pollen);
       array.push(matched.temperature);
@@ -104,10 +104,10 @@ router.get("/triggers/:email", function (req, res) {
       array.push(matched.mold);
       array.push(matched.humidity);
       array.push(matched.uvIndex);
-      res.json(array);
       console.log(array);
+      res.json(array);
     });
-  res.render("index");
+
 });
 
 module.exports = router;

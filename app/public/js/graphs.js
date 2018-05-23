@@ -1,6 +1,5 @@
 var Data = [];
 // tell canvas what to do giving context 
-var chartId = document.getElementById("myChart").getContext('2d');
 var hours = [];
 var color = "";
 var air = 0;
@@ -12,8 +11,10 @@ var pieTitle = "";
 var graphTriggers = ["temperature", "rain", "wind"];
 var circleTriggers = ["airQuality", "grass", "UVIndex", "ragweed", "mold"];
 
-$("#sign-in").on("click", function (event) {
+$("#sign-in-btn").on("click", function (event) {
+    console.log("sign in clicked");
     var user = $("#exampleInputEmail1").val().trim();
+    console.log(user);
     $.ajax("/triggers/" + user, {
         type: "GET"
     }).then(function (result) {
@@ -31,16 +32,16 @@ $("#sign-in").on("click", function (event) {
                 }
             }
         }
-        graphTriggers = emptyArray1;
-        console.log(graphTriggers);
-        circleTriggers = emptyArray2;
-        console.log(circleTriggers);
+        console.log(emptyArray1);
+        console.log(emptyArray2);
+        sessionStorage.setItem("triggerArray", emptyArray1.toString());
+        sessionStorage.setItem("circleTriggerArray", emptyArray2.toString());
         window.location.href = "/index";
     });
 });
 
 function hourlyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=QIFPbP9lhUU6n7cZZo6bw16xvduyTwKr&language=en-us&details=true";
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/335315?apikey=ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM&language=en-us&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -78,6 +79,13 @@ function getTime() {
 }
 
 function getWeatherData(data) {
+
+    var chartId = document.getElementById("myChart").getContext('2d');
+
+    if (sessionStorage.getItem("triggerArray")) {
+        graphTriggers = sessionStorage.getItem("triggerArray").split(",");
+        console.log(graphTriggers);
+    }
 
     for (var k = 0; k < graphTriggers.length; k++) {
         console.log(graphTriggers[k]);
@@ -242,7 +250,7 @@ Object.byString = function (o, s) {
 //pie chart functions
 
 function dailyForcast() {
-    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/335315?apikey=QIFPbP9lhUU6n7cZZo6bw16xvduyTwKr&details=true";
+    var queryURL = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/335315?apikey=ADBLR0VCWoVNPXvAhO9vBXTtlAAU8sfM&details=true";
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -253,6 +261,11 @@ function dailyForcast() {
 }
 
 function createCircles(airData) {
+
+    if (sessionStorage.getItem("circleTriggerArray")) {
+        circleTriggers = sessionStorage.getItem("circleTriggerArray").split(",");
+        console.log(circleTriggers);
+    }
     for (var j = 0; j < circleTriggers.length; j++) {
         var container = $("<div>");
         var containerID = '"container' + j + '"';
